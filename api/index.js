@@ -18,16 +18,16 @@ const swaggerOptions = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'Express API for My Project',
+            title: 'SistemaMonitoraggioAmbientale API',
             version: '1.0.0',
             description:
-                'This is a REST API application made with Express.',
+                'Information about SistemaMonitoraggioAmbientale API',
             license: {
                 name: 'Licensed Under MIT',
                 url: 'https://spdx.org/licenses/MIT.html',
             },
             contact: {
-                name: 'GroupXX',
+                name: 'Group19',
                 url: 'http://localhost:49146/',
             },
         },
@@ -44,20 +44,18 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+//define Cors
+var cors = require('cors')
+app.use(cors())
 
-
-//define Images
-
+//define Images  CAUSAVA ERRORE SE AVVIO L'INDEX.JS (CREDO VADA INSTALLATO)
+// SE CI SERVIRA LO INSTALLEREMO
+/*
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 app.use(fileUpload());
 app.use('/Photos', Express.static(__dirname + '/Photos'));
-
-//define Cors
-
-var cors = require('cors')
-app.use(cors())
-
+*/
 
 var DATABASE = "SistemaMonitoraggioAmbientale";
 var database;
@@ -67,14 +65,129 @@ app.listen(49146, () => {
     console.log("APIs Running");
     
     MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true }, (error, client) => {
-        database = client.db(DATABASE);
-        console.log("Mongo DB Connection Successfull");
+        if (error) {
+            console.log("Error connecting at the MongoDB:" + error); 
+        } else {
+            database = client.db(DATABASE);
+            console.log("Mongo DB Connection Successfull");
+        }
     })
 
 });
 
 
 //API
+
+
+/**
+ * @swagger
+ * /api/fauna:
+ *   get:
+ *     summary: Retrieve a list of fauna.
+ *     description: Retrieve a list of fauna from the Server.
+ *     responses:
+ *       200:
+ *         description: A list of fauna.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the animal.
+ *                         example: 1489045
+ *                       Type:
+ *                         type: string
+ *                         description: Type of the animal
+ *                         example: Bear
+ *                       Description:
+ *                         type: string
+ *                         description: The animal description.
+ *                         example: This is a bear.
+ *                       Image:
+ *                          type: string
+ *                          description: The animal image.
+ *                          example: bear.jpg
+ *                       SpecieProtetta:
+ *                          type: bool
+ *                          description: Protected species
+ *                          example: true
+ */
+app.get('/api/fauna', (request, response) => {
+    database.collection("Fauna").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/flora', (request, response) => {
+    database.collection("Flora").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/parco', (request, response) => {
+    database.collection("Parco").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/sensoreAmbiente', (request, response) => {
+    database.collection("SensoreAmbiente").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/sensoreGPS', (request, response) => {
+    database.collection("SensoreGPS").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/storicoFauna', (request, response) => {
+    database.collection("StoricoFauna").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/amministratore', (request, response) => {
+    database.collection("Amministratore").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
 
 //quello che ci interessa a noi
 
@@ -96,6 +209,7 @@ app.listen(49146, () => {
 //------------------------------------------------------------------------------------------------------------
 
 //GET-POST-PUT-DELETE
+/*
 app.get('/', (request, response) => {
     response.json('Hello World');
 })
@@ -301,3 +415,4 @@ app.delete('/api/prodotti/:name', (request, response) => {
     });
     response.json("Deleted Successfully: " + myObject.products.length);
 })
+*/
