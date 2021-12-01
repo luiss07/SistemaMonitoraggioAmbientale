@@ -50,12 +50,12 @@ app.use(cors())
 
 //define Images  CAUSAVA ERRORE SE AVVIO L'INDEX.JS (CREDO VADA INSTALLATO)
 // SE CI SERVIRA LO INSTALLEREMO
-/*
+
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 app.use(fileUpload());
 app.use('/Photos', Express.static(__dirname + '/Photos'));
-*/
+
 
 var DATABASE = "SistemaMonitoraggioAmbientale";
 var database;
@@ -169,6 +169,25 @@ app.get('/api/sensoreGPS', (request, response) => {
     })
 })
 
+app.post('/api/sensoreGPS', (request, response) => {
+
+    database.collection("SensoreGPS").count({}, function (error) {
+        if (error){
+            console.log(error);
+        }
+
+        database.collection("SensoreGPS").insertOne({
+            Posizione: request.body['Location'],
+            TipoAnimale: request.body['AnimalType'],
+            Parco: request.body['Park'],
+            Contenimento: request.body['Containment'],
+            SenId: request.body['Name'],
+        });
+
+        response.json("Added Successfully");
+    })
+})
+
 app.get('/api/storicoFauna', (request, response) => {
     database.collection("StoricoFauna").find({}).toArray((error, result) => {
         if (error) {
@@ -179,6 +198,7 @@ app.get('/api/storicoFauna', (request, response) => {
     })
 })
 
+/*
 app.get('/api/amministratore', (request, response) => {
     database.collection("Amministratore").find({}).toArray((error, result) => {
         if (error) {
@@ -188,7 +208,7 @@ app.get('/api/amministratore', (request, response) => {
         response.send(result);
     })
 })
-
+*/
 //quello che ci interessa a noi
 
 
