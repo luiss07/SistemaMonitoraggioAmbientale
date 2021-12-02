@@ -1,0 +1,28 @@
+.inline{
+    align-items: center;
+    justify-items: center;
+    margin: 20px;
+}
+
+.center{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.sens_amb{
+    justify-items: center;
+}
+
+.active2{
+    color: black;
+}
+
+.circle-dim{
+    width: 200px;
+    margin: auto;
+
+}
+
+@media only screen and (max-width:576px){
+    
+}
