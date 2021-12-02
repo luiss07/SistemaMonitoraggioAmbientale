@@ -54,7 +54,7 @@ app.use(cors())
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 app.use(fileUpload());
-app.use('/Photos', Express.static(__dirname + '/Photos'));
+app.use('/images', Express.static(__dirname + '/images'));
 
 
 var DATABASE = "SistemaMonitoraggioAmbientale";
@@ -121,6 +121,19 @@ app.listen(49146, () => {
  */
 app.get('/api/fauna', (request, response) => {
     database.collection("Fauna").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/fauna/:typeA/:park', (request, response) => {
+    database.collection("Fauna").find({
+        Tipo: request.params.typeA,
+        Parco : request.params.park
+    }).toArray((error, result) => {
         if (error) {
             console.log(error);
         }
