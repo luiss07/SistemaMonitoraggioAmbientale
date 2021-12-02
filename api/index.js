@@ -129,10 +129,10 @@ app.get('/api/fauna', (request, response) => {
     })
 })
 
-app.get('/api/fauna/:typeA/:park', (request, response) => {
-    database.collection("Fauna").find({
-        Tipo: request.params.typeA,
-        Parco : request.params.park
+app.get('/api/fauna/:park', (request, response) => {
+    database.inventory("Fauna").find({
+        //Tipo: request.params.typeA,
+        Parco : {$in : [request.params.park]}
     }).toArray((error, result) => {
         if (error) {
             console.log(error);
@@ -190,11 +190,11 @@ app.post('/api/sensoreGPS', (request, response) => {
         }
 
         database.collection("SensoreGPS").insertOne({
-            Posizione: request.body['Location'],
-            TipoAnimale: request.body['AnimalType'],
-            Parco: request.body['Park'],
-            Contenimento: request.body['Containment'],
-            SenId: request.body['Name'],
+            Posizione: request.body['posizione'],
+            TipoAnimale: request.body['tipoAnimale'],
+            Parco: request.body['parco'],
+            Contenimento: request.body['contenimento'],
+            SenId: request.body['senId']
         });
 
         response.json("Added Successfully");
