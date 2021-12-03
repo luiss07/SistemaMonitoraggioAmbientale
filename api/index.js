@@ -54,7 +54,7 @@ app.use(cors())
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
 app.use(fileUpload());
-app.use('/Photos', Express.static(__dirname + '/Photos'));
+app.use('/images', Express.static(__dirname + '/images'));
 
 
 var DATABASE = "SistemaMonitoraggioAmbientale";
@@ -129,6 +129,19 @@ app.get('/api/fauna', (request, response) => {
     })
 })
 
+app.get('/api/fauna/:park', (request, response) => {
+    database.inventory("Fauna").find({
+        //Tipo: request.params.typeA,
+        Parco : {$in : [request.params.park]}
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 app.get('/api/flora', (request, response) => {
     database.collection("Flora").find({}).toArray((error, result) => {
         if (error) {
@@ -177,11 +190,11 @@ app.post('/api/sensoreGPS', (request, response) => {
         }
 
         database.collection("SensoreGPS").insertOne({
-            Posizione: request.body['Location'],
-            TipoAnimale: request.body['AnimalType'],
-            Parco: request.body['Park'],
-            Contenimento: request.body['Containment'],
-            SenId: request.body['Name'],
+            Posizione: request.body['posizione'],
+            TipoAnimale: request.body['tipoAnimale'],
+            Parco: request.body['parco'],
+            Contenimento: request.body['contenimento'],
+            SenId: request.body['senId']
         });
 
         response.json("Added Successfully");
