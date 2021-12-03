@@ -1,46 +1,30 @@
-const app = document.getElementById('root');
-
-/*const logo = document.createElement('img');
-logo.src = 'logo.png';*/
-
 const container = document.getElementById('listaParchi');
-container.setAttribute('class', 'container');
-
-//app.appendChild(logo);
-app.appendChild(container);
 
 var request = new XMLHttpRequest();
 request.open('GET', 'http://localhost:49146/api/parco', true);
 request.onload = function () {
 
-
     // Begin accessing JSON data here
     var data = JSON.parse(this.response);
-    console.log("eccolo: " + data.Parco);
+    console.log(data.Parco);
     if (request.status >= 200 && request.status < 400) {
-        data.Parco.forEach(parco => {
+        data.forEach(park => {
 
-            const li = document.createElement('li');
-            li.setAttribute('class', 'href');
-            /*
-            const card = document.createElement('div');
-            card.setAttribute('class', 'card');
+            let li = document.createElement("li");
+            let a = document.createElement("a");
+            a.innerHTML = park.Parco;
+            a.setAttribute("class", "dropdown-item");
+            a.setAttribute("href", "parco.html");
 
-
-            const h1 = document.createElement('h1');
-            h1.textContent = product.Name;
-
-            const p = document.createElement('p');
-            p.textContent = `PRICE: ${product.Price}`;
-
-            const p1 = document.createElement('p');
-            p1.textContent = `LOCATION: ${product.Location}`;
-
-            container.appendChild(card);
-            card.appendChild(h1);
-            card.appendChild(p);
-            card.appendChild(p1);
-            */
+            li.onclick = function() {
+                selectedPark = park.Parco;
+                let parkName = document.getElementById("parkName");
+                parkName.innerHTML = park.Parco;
+                return false;
+            };
+            //li.setAttribute("onclick", "NOME_FUNZIONE");
+            li.appendChild(a);
+            container.appendChild(li);
         });
     } else {
         const errorMessage = document.createElement('marquee');
