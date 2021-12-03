@@ -128,7 +128,7 @@ app.get('/api/fauna', (request, response) => {
         response.send(result);
     })
 })
-
+/*
 app.get('/api/fauna/:park', (request, response) => {
     database.inventory("Fauna").find({
         //Tipo: request.params.typeA,
@@ -141,7 +141,7 @@ app.get('/api/fauna/:park', (request, response) => {
         response.send(result);
     })
 })
-
+*/
 app.get('/api/flora', (request, response) => {
     database.collection("Flora").find({}).toArray((error, result) => {
         if (error) {
