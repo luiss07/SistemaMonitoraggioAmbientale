@@ -172,6 +172,30 @@ app.get('/api/sensoreAmbiente', (request, response) => {
     })
 })
 
+app.put('/api/updateSensoriAmbientale', (request, response) => {
+
+    database.collection("rischioAmbientale").updateOne(
+        // Filter Criteria
+        {
+            "parco": request.body['parco']
+        },
+        // Update
+        {
+            $set:
+            {
+                allagamento: request.body['allagamento'],
+                incendio: request['incendio'],
+                meteo: request.body['meteo'],
+                parco: request.body['parco'],
+                risoreIdriche: request.body['risoreIdriche'],
+            }
+
+        }
+    );
+
+    response.json("Updated Successfully");
+})
+
 app.get('/api/sensoreGPS', (request, response) => {
     database.collection("SensoreGPS").find({}).toArray((error, result) => {
         if (error) {
@@ -223,6 +247,15 @@ app.get('/api/amministratore', (request, response) => {
 })
 */
 //quello che ci interessa a noi
+
+
+
+
+
+
+
+
+
 
 
 
