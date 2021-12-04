@@ -15,10 +15,76 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- used jQuery to include html file of navbar in all pages -->
   </head>
   <body>
+<<<<<<< HEAD
 
     <div id="nav-placeholder"></div>
     <script src="getNavbar.js"></script>
 
+=======
+    
+    <!-- navigation bar-->
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+            
+            <img src="../images/logo.svg" alt="" style="width: 55px;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link "
+                        data-toggle="dropdown" 
+                        id="navbarDropdownMenuLink" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                        Parco
+                        </a>
+                        <ul id="listaParchi" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"></ul>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link"
+                        data-toggle="dropdown" 
+                        id="navbarDropdownMenuLink" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                        Fauna
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="flora_fauna.html">Orso</a></li>
+                            <li><a class="dropdown-item" href="flora_fauna.html">Volpe</a></li>
+                            <li><a class="dropdown-item" href="flora_fauna.html">Luigi</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link"
+                        data-toggle="dropdown" 
+                        id="navbarDropdownMenuLink" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false">
+                        Flora
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="flora_fauna.html">Pioppo</a></li>
+                            <li><a class="dropdown-item" href="flora_fauna.html">Abete</a></li>
+                            <li><a class="dropdown-item" href="flora_fauna.html">Pino</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link active" href="#">Monitoraggio</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="sensori.html">Sensori</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </nav>
+>>>>>>> 844ca7d2a0f7b3ac4b47ec35ac422565e61ae191
 
     <div class="container" style="margin-top: 30px;margin-bottom: 50px;">
         <h1>Monitoraggio</h1>
@@ -31,7 +97,7 @@
         <div class="row">
             <div class="col">
                 <div class="card  border-0 mb-3" >
-                    <img src="../images/cerchio.png" alt="" class="circle-dim">
+                    <img src="../images/cerchio_rosso.png" alt="" class="circle-dim">
                     <div class="card-body card-img-overlay">
                         <h1 class="card-text center">12%</h1>
                     </div>
@@ -40,7 +106,7 @@
             </div>
             <div class="col">
                 <div class="card  border-0 mb-3">
-                    <img src="../images/cerchio.png" alt="" class="circle-dim">
+                    <img src="../images/cerchio_arancio.png" alt="" class="circle-dim">
                     <div class="card-body card-img-overlay">
                         <h1 class="card-text center">12%</h1>
                     </div>
