@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //define MongoDB
 var MongoClient = require("mongodb").MongoClient;
+var ObjectId = require("mongodb").ObjectId;
 const { request, response } = require("express");
 var CONNECTION_STRING = "mongodb+srv://admin:admin@unitncluster.nnj5z.mongodb.net/test"
 
@@ -53,6 +54,7 @@ app.use(cors())
 
 var fileUpload = require('express-fileupload');
 var fs = require('fs');
+const { MongoDBNamespace } = require("mongodb");
 app.use(fileUpload());
 app.use('/images', Express.static(__dirname + '/images'));
 
@@ -149,8 +151,8 @@ app.get('/api/parco', (request, response) => {
     })
 })
 
-app.get('/api/sensoreAmbiente', (request, response) => {
-    database.collection("SensoreAmbiente").find({}).toArray((error, result) => {
+app.get('/api/rischioAmbientale', (request, response) => {
+    database.collection("rischioAmbientale").find({}).toArray((error, result) => {
         if (error) {
             console.log(error);
         }
@@ -159,7 +161,7 @@ app.get('/api/sensoreAmbiente', (request, response) => {
     })
 })
 
-app.put('/api/updateSensoriAmbientale', (request, response) => {
+app.put('/api/rischioAmbientale', (request, response) => {
 
     database.collection("rischioAmbientale").updateOne(
         // Filter Criteria
@@ -212,6 +214,15 @@ app.post('/api/sensoreGPS', (request, response) => {
     })
 })
 
+app.delete('/api/sensoreGPS/:id', (request,response) => {
+    let senId = new ObjectId(request.params.id);
+    database.collection("SensoreGPS").deleteOne({
+        _id: senId
+    });
+
+    response.json("Delete successfully!");
+})
+
 app.get('/api/storicoFauna', (request, response) => {
     database.collection("StoricoFauna").find({}).toArray((error, result) => {
         if (error) {
@@ -221,251 +232,3 @@ app.get('/api/storicoFauna', (request, response) => {
         response.send(result);
     })
 })
-
-/*
-app.get('/api/amministratore', (request, response) => {
-    database.collection("Amministratore").find({}).toArray((error, result) => {
-        if (error) {
-            console.log(error);
-        }
-
-        response.send(result);
-    })
-})
-*/
-//quello che ci interessa a noi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//------------------------------------------------------------------------------------------------------------
-
-//GET-POST-PUT-DELETE
-/*
-app.get('/', (request, response) => {
-    response.json('Hello World');
-})
-
-
-app.get('/api/department', (request, response) => {
-
-    database.collection("Department").find({}).toArray((error, result) => {
-        if (error) {
-            console.log(error);
-        }
-
-        response.send(result);
-    })
-
-})
-
-app.post('/api/department', (request, response) => {
-
-    database.collection("Department").count({}, function (error, numOfDocs) {
-        if (error) {
-            console.log(error);
-        }
-
-        database.collection("Department").insertOne({
-            DepartmentId: numOfDocs + 1,
-            DepartmentName: request.body['DepartmentName']
-        });
-
-        response.json("Added Successfully");
-    })
-
-})
-
-
-app.put('/api/department', (request, response) => {
-
-    database.collection("Department").updateOne(
-        //Filter Criteria
-        {
-            "DepartmentId": request.body['DepartmentId']
-        },
-        //Update
-        {
-            $set:
-            {
-                "DepartmentName": request.body['DepartmentName']
-            }
-
-        }
-    );
-
-    response.json("Updated Successfully");
-})
-
-
-
-app.delete('/api/department/:id', (request, response) => {
-
-    database.collection("Department").deleteOne({
-        DepartmentId: parseInt(request.params.id)
-    });
-
-    response.json("Deleted Successfully");
-})
-
-
-
-app.get('/api/employee', (request, response) => {
-
-    database.collection("Employee").find({}).toArray((error, result) => {
-        if (error) {
-            console.log(error);
-        }
-
-        response.send(result);
-    })
-
-})
-
-app.post('/api/employee', (request, response) => {
-
-    database.collection("Employee").count({}, function (error, numOfDocs) {
-        if (error) {
-            console.log(error);
-        }
-
-        database.collection("Employee").insertOne({
-            EmployeeId: numOfDocs + 1,
-            EmployeeName: request.body['EmployeeName'],
-            Department: request.body['Department'],
-            DateOfJoining: request.body['DateOfJoining'],
-            PhotoFileName: request.body['PhotoFileName'],
-        });
-
-        response.json("Added Successfully");
-    })
-
-})
-
-
-app.put('/api/employee', (request, response) => {
-
-    database.collection("Employee").updateOne(
-        //Filter Criteria
-        {
-            "EmployeeId": request.body['EmployeeId']
-        },
-        //Update
-        {
-            $set:
-            {
-                EmployeeName: request.body['EmployeeName'],
-                Department: request.body['Department'],
-                DateOfJoining: request.body['DateOfJoining'],
-                PhotoFileName: request.body['PhotoFileName'],
-            }
-
-        }
-    );
-
-    response.json("Updated Successfully");
-})
-
-
-
-app.delete('/api/employee/:id', (request, response) => {
-
-    database.collection("Employee").deleteOne({
-        EmployeeId: parseInt(request.params.id)
-    });
-
-    response.json("Deleted Successfully");
-})
-
-
-app.post('/api/employee/savefile', (request, response) => {
-
-    fs.writeFile("./Photos/" + request.files.file.name,
-        request.files.file.data, function (err) {
-            if (err) {
-                console.log(err);
-            }
-
-            response.json(request.files.file.name);
-        }
-    )
-})
-
-app.get('/api/prodotti', (request, response) => {
-    var data = fs.readFileSync('prodotti.json');
-    var myObject = JSON.parse(data);
-
-    response.send(myObject);
-
-})
-
-
-app.post('/api/prodotti', (request, response) => {
-
-    // lettura file json e estrazione dati
-    var data = fs.readFileSync('prodotti.json');
-    var myObject = JSON.parse(data);
-
-
-    // creazione nuovo elemento da inserire da Request Parameter
-    let newProduct = {
-        "Name": request.body['Name'],
-        "Price": request.body['Price'],
-        "Location": request.body['Location']
-    };
-
-    //aggiunta nuovo elemento
-    myObject.products.push(newProduct);
-
-    //aggiornamento file json con il nuovo elemento
-    var newData = JSON.stringify(myObject);
-    fs.writeFile('prodotti.json', newData, err => {
-        // error checking
-        if (err) throw err;
-
-    });
-
-    response.json("Prodotto Aggiunto Correttamente: (" + myObject.products.length + ")");
-})
-
-
-
-app.delete('/api/prodotti/:name', (request, response) => {
-    var data = fs.readFileSync('prodotti.json');
-    var myObject = JSON.parse(data);
-    for (let [i, product] of myObject.products.entries()) {
-
-        if (product.Name == request.params.name) {
-            myObject.products.splice(i, 1);
-        }
-    }
-    //memorizzo il nuovo JSON dopo la cancellazione
-    var newData = JSON.stringify(myObject);
-    fs.writeFile('prodotti.json', newData, err => {
-        // error checking
-        if (err) throw err;
-    });
-    response.json("Deleted Successfully: " + myObject.products.length);
-})
-*/

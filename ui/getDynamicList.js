@@ -1,7 +1,3 @@
-var selectedPark = null;
-var selectedAnimal = null;
-var selectedPlant = null;
-
 async function getParkList() {
     let response = await fetch('http://localhost:49146/api/parco');
     let data = await response.json();
@@ -18,7 +14,7 @@ getParkList().then(data=>{
         a.setAttribute("href", "parco.html");
 
         li.onclick = function() {
-            selectedPark = park.Parco;
+            variables.selectedPark = park.Parco;
             let parkName = document.getElementById("parkName");
             parkName.innerHTML = park.Parco;
             return false;
@@ -52,7 +48,7 @@ getFaunaList().then(data=>{
                     a.setAttribute("href", "parco.html");
 
                     li.onclick = function() {
-                        selectedAnimal = animal.Tipo;
+                        variables.selectedAnimal = animal.Tipo;
                         return false;
                     };
                     li.appendChild(a);
