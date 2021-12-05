@@ -1,16 +1,6 @@
-.inline{
-    align-items: center;
-    justify-items: center;
-    margin: 20px;
-}
-
-.center{
+.myCenter{
     margin-top: 50px;
     text-align: center;
-}
-
-.sens_amb{
-    justify-items: center;
 }
 
 .circle-dim{
