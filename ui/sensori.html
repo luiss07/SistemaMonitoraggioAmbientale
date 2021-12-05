@@ -33,9 +33,109 @@
 			<h2 class="fw-light">Nome parco</h2>
 		</div>
 
-		
+		<!-- page body -->
+		<div class="container">
+			<div class=""></div>
+			<div class="col-1"></div>
+			<div class="row">
+				<!-- buttons -->
+				<div class="col" style="margin: 20px;">
+					<div class="container">
+						<div class="dropdown text-center">
+							<button class="btn btn-primary dropdown-toggle"type="button"
+								id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+								style="margin: 10px ;">
+								Sensori
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<!-- lista dinamica -->
+								<li><a class="dropdown-item" href="#">Prova</a></li>
+							</ul>
+						</div>
 
-		<!-- usare MODAL per inserire dati nuovo sensore-->
+						<div class="text-center">
+							<button class="btn btn-danger" type="button"
+
+								id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+								style="margin: 10px ;">
+								Elimina sensore
+								<!-- document.getElementById("myBtn").disabled = true;  PER DISABILITARLO-->
+							</button>
+						</div>
+
+
+						<!-- Button trigger modal -->
+						<div class="text-center">
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+								data-bs-target="#exampleModal" style="margin: 10px ;">
+								Aggiungi sensore
+							</button>
+						</div>
+
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Aggiungi sensore</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<!-- add sensor form -->
+										<form>
+											<div class="mb-3">
+												<input class="form-control form-control-sm" type="text"
+													placeholder="Tipo animale">
+											</div>
+											<div class="mb-3">
+												<input class="form-control form-control-sm" type="text"
+													placeholder="Parco">
+											</div>
+											<div class="mb-3">
+												<input class="form-control form-control-sm" type="text"
+													placeholder="Contenimento">
+											</div>
+											<div class="mb-3">
+												<input class="form-control form-control-sm" type="text"
+													placeholder="ID sensore parco">
+											</div>
+
+											<button type="submit" class="btn btn-primary">Conferma</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- table -->
+				<div class="col">
+
+					<div class="card mx-auto"style="max-width: 70%; min-width: 300px; margin:
+						20px;">
+						<div class="card-header">
+							Sensore nesimo
+							<!-- da mettere dinamicamente-->
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Posizione:</li>
+							<li class="list-group-item">Tipo animale:</li>
+							<li class="list-group-item">Parco:</li>
+							<li class="list-group-item">Contenimento:</li>
+							<li class="list-group-item">ID sensore parco:</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-1"></div>
+		</div>
+
+
 
 		<!-- Bootstrap .js -->
 		<script
