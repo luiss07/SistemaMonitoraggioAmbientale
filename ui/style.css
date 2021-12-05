@@ -19,6 +19,12 @@
 
 }
 
-@media only screen and (max-width:576px){
-    
+.myTitle{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.myImg-fluid{
+    width: 100%;
+    height: auto;
 }
