@@ -49,16 +49,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 var cors = require('cors')
 app.use(cors())
 
-//define Images  CAUSAVA ERRORE SE AVVIO L'INDEX.JS (CREDO VADA INSTALLATO)
-// SE CI SERVIRA LO INSTALLEREMO
-
-var fileUpload = require('express-fileupload');
-var fs = require('fs');
-const { MongoDBNamespace } = require("mongodb");
-app.use(fileUpload());
-app.use('/images', Express.static(__dirname + '/images'));
-
-
+//define Database name
 var DATABASE = "SistemaMonitoraggioAmbientale";
 var database;
 
