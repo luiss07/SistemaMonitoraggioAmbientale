@@ -186,6 +186,19 @@ app.get('/api/sensoreGPS', (request, response) => {
     })
 })
 
+app.get('/api/sensoreGPS/:id', (request, response) => {
+    let senId = new ObjectId(request.params.id);
+    database.collection("SensoreGPS").find({
+        _id: senId
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 app.post('/api/sensoreGPS', (request, response) => {
 
     database.collection("SensoreGPS").count({}, function (error) {
