@@ -1,3 +1,5 @@
+// API GET for Park list
+
 async function getParkList() {
     let response = await fetch('http://localhost:49146/api/parco');
     let data = await response.json();
@@ -29,6 +31,8 @@ getParkList().then(data=>{
 //let liParco = document.getElementById("navParco");
 //liParco.addEventListener('click', getParkList());
 
+// API GET for fauna list
+
 async function getFaunaList(){
     let response = await fetch('http://localhost:49146/api/fauna');
     let data = await response.json();
@@ -37,8 +41,8 @@ async function getFaunaList(){
 
 getFaunaList().then(data=>{
     let faunalist = document.getElementById('listafauna');
-    data.forEach(animal => {
-        if (selectedPark != null){
+    if (selectedPark != null){
+        data.forEach(animal => {
             animal.Parco.forEach(park =>{
                 if(park == selectedPark){
                     let li = document.createElement("li");
@@ -49,16 +53,17 @@ getFaunaList().then(data=>{
 
                     li.onclick = function() {
                         variables.selectedAnimal = animal.Tipo;
-                        return false;
+                         return false;
                     };
                     li.appendChild(a);
                     faunalist.appendChild(li);
-                }
-            })
-        }else{
-            console.log("seleziona parco");
-        }
-    });
+                    }
+                })
+            });
+    }else{
+        console.log("seleziona parco");
+    }
+    
 })
 
 //let lifauna = document.getElementById("navFauna");

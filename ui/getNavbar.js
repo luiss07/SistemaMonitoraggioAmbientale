@@ -1,3 +1,4 @@
+// to include navbar.html with script
 $.get("navbar.html", function(data){
     $("#nav-placeholder").replaceWith(data);
 });
