@@ -1,146 +1,109 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Monitoraggio Ambientale</title>
-		<link rel="icon" href="../images/Logo.svg">
+<!-- title container -->
+<div class="container myTitle">
+	<h1>Sensori</h1>
+	<h2 class="fw-light">Nome parco</h2>
+</div>
 
-		<!-- Bootstrap CSS -->
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-			crossorigin="anonymous">
+<!-- page body -->
+<div class="container">
+	<div class="col-1"></div>
+	<div class="row">
+		<!-- buttons -->
+		<div class="col" style="margin: 20px;">
+			<div class="container">
+				<div class="dropdown text-center">
+					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
+						data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px ;">
+						Sensori
+					</button>
+					<ul id="listasensori" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						<!-- lista dinamica -->
+						<!-- <li><a class="dropdown-item" href="#">Prova</a></li> -->
+					</ul>
+				</div>
 
-		<!-- MyCSS-->
-		<link rel="stylesheet" href="style.css">
-
-		<!-- use jQuery to include html file of navbar in all pages -->
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	</head>
-	<body>
-
-		<!-- navbar generator -->
-		<div id="nav-placeholder"></div>
-
-		<!-- title container -->
-		<div class="container myTitle">
-			<h1>Sensori</h1>
-			<h2 class="fw-light">Nome parco</h2>
-		</div>
-
-		<!-- page body -->
-		<div class="container">
-			<div class="col-1"></div>
-			<div class="row">
-				<!-- buttons -->
-				<div class="col" style="margin: 20px;">
-					<div class="container">
-						<div class="dropdown text-center">
-							<button class="btn btn-primary dropdown-toggle"type="button"
-								id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-								style="margin: 10px ;">
-								Sensori
-							</button>
-							<ul id="listasensori" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<!-- lista dinamica -->
-								<!-- <li><a class="dropdown-item" href="#">Prova</a></li> -->
-							</ul>
-						</div>
-
-						<div class="text-center">
-							<button class="btn btn-danger" type="button"
-
-								id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-								style="margin: 10px ;">
-								Elimina sensore
-								<!-- document.getElementById("myBtn").disabled = true;  PER DISABILITARLO-->
-							</button>
-						</div>
+				<div class="text-center">
+					<button class="btn btn-danger" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+						aria-expanded="false" style="margin: 10px ;">
+						Elimina sensore
+						<!-- document.getElementById("myBtn").disabled = true;  PER DISABILITARLO-->
+					</button>
+				</div>
 
 
-						<!-- Button trigger modal -->
-						<div class="text-center">
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#exampleModal" style="margin: 10px ;">
-								Aggiungi sensore
-							</button>
-						</div>
+				<!-- Button trigger modal -->
+				<div class="text-center">
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+						style="margin: 10px ;">
+						Aggiungi sensore
+					</button>
+				</div>
 
 
-						<!-- Modal -->
-						<div class="modal fade" id="exampleModal" tabindex="-1"
-							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title">Aggiungi sensore</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal"
-											aria-label="Close"></button>
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Aggiungi sensore</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<!-- add sensor form -->
+								<form>
+									<div class="mb-3">
+										<input class="form-control form-control-sm" type="text"
+											placeholder="Tipo animale">
 									</div>
-									<div class="modal-body">
-										<!-- add sensor form -->
-										<form>
-											<div class="mb-3">
-												<input class="form-control form-control-sm" type="text"
-													placeholder="Tipo animale">
-											</div>
-											<div class="mb-3">
-												<input class="form-control form-control-sm" type="text"
-													placeholder="Parco">
-											</div>
-											<div class="mb-3">
-												<input class="form-control form-control-sm" type="text"
-													placeholder="Contenimento">
-											</div>
-											<div class="mb-3">
-												<input class="form-control form-control-sm" type="text"
-													placeholder="ID sensore parco">
-											</div>
-
-											<button type="submit" class="btn btn-primary">Conferma</button>
-										</form>
+									<div class="mb-3">
+										<input class="form-control form-control-sm" type="text" placeholder="Parco">
 									</div>
-								</div>
+									<div class="mb-3">
+										<input class="form-control form-control-sm" type="text"
+											placeholder="Contenimento">
+									</div>
+									<div class="mb-3">
+										<input class="form-control form-control-sm" type="text"
+											placeholder="ID sensore parco">
+									</div>
+
+									<button type="submit" class="btn btn-primary">Conferma</button>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<!-- table -->
-				<div class="col">
-
-					<div class="card mx-auto"style="max-width: 70%; min-width: 300px; margin:
-						20px;">
-						<div class="card-header">
-							Sensore
-							<!-- da mettere dinamicamente-->
-						</div>
-						<ul class="list-group list-group-flush">
-							<li id="senId" class="list-group-item">ID sensore parco:</li>
-							<li id="senPosizione" class="list-group-item">Posizione:</li>
-							<li id="senTipoAnimale" class="list-group-item">Tipo animale:</li>
-							<li id="senParco" class="list-group-item">Parco:</li>
-							<li id="senContenimento" class="list-group-item">Contenimento:</li>
-						</ul>
-					</div>
-
-				</div>
 			</div>
-			<div class="col-1"></div>
 		</div>
 
-		<script src="variables.js"></script>
-		<script src="getNavbar.js"></script>
-		<script src="getDynamicSensor.js"></script>
-		<!-- Bootstrap .js -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-			crossorigin="anonymous"></script>
+		<!-- table -->
+		<div class="col">
 
-	</body>
-</html>
+			<div class="card mx-auto" style="max-width: 70%; min-width: 300px; margin:
+						20px;">
+				<div class="card-header">
+					Sensore
+					<!-- da mettere dinamicamente-->
+				</div>
+				<ul class="list-group list-group-flush">
+					<li id="senId" class="list-group-item">ID sensore parco:</li>
+					<li id="senPosizione" class="list-group-item">Posizione:</li>
+					<li id="senTipoAnimale" class="list-group-item">Tipo animale:</li>
+					<li id="senParco" class="list-group-item">Parco:</li>
+					<li id="senContenimento" class="list-group-item">Contenimento:</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+	<div class="col-1"></div>
+</div>
+
+<!--<script src="variables.js"></script>-->
+<!--<script src="getDynamicSensor.js"></script>-->
+<!-- Bootstrap .js
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script> -->

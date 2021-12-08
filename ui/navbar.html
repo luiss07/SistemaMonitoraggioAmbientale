@@ -9,7 +9,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav ms-auto">
-				<li id="navParco" class="nav-item dropdown" onclick="getParkList()">
+				<li id="navParco" class="nav-item dropdown">
 					<a class="nav-link"data-toggle="dropdown"
 						id="navbarDropdownMenuLink"
 						role="button"
@@ -20,7 +20,7 @@
 					<ul id="listaParchi" class="dropdown-menu"
 						aria-labelledby="navbarDropdownMenuLink"></ul>
 				</li>
-				<li id="navFauna" class="nav-item dropdown" onclick="getFaunaList()">
+				<li id="navFauna" class="nav-item dropdown">
 					<a class="nav-link"
 						data-toggle="dropdown"
 						id="navbarDropdownMenuLink"
@@ -29,8 +29,7 @@
 						aria-expanded="false">
 						Fauna
 					</a>
-					<ul id="listafauna" class="dropdown-menu"
-						aria-labelledby="navbarDropdownMenuLink"></ul>
+					<ul id="listafauna" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"></ul>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link"
@@ -41,21 +40,16 @@
 						aria-expanded="false">
 						Flora
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<li><a class="dropdown-item" href="flora_fauna.html">Pioppo</a></li>
-						<li><a class="dropdown-item" href="flora_fauna.html">Abete</a></li>
-						<li><a class="dropdown-item" href="flora_fauna.html">Pino</a></li>
-					</ul>
+					<ul id="listaflora" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"></ul>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="index.html">Monitoraggio</a>
+					<a class="nav-link" href="#" onclick='$("#loadJQuery").load("monitoraggio.html");'>Monitoraggio</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="sensori.html">Sensori</a>
+					<a class="nav-link" href="#" onclick='$("#loadJQuery").load("sensori.html");'>Sensori</a>
 				</li>
 			</ul>
 		</div>
-
 	</div>
 </nav>
 
