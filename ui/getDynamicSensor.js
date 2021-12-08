@@ -1,7 +1,7 @@
 // API GET for Sensor List
 
 async function getSensorList(){
-    let response = await fetch('http://localhost:49146/api/sensoreGPS');
+    let response = await fetch(API_URL+'sensoreGPS');
     let data = await response.json();
     return data;
 }

@@ -3,6 +3,6 @@ const variables={
     PHOTO_URL:"http://localhost:49146/images/"
 };
 
-var selectedPark = null;
-var selectedAnimal = null;
-var selectedPlant = null;
+window.sessionStorage.setItem("selectedPark", "");
+window.sessionStorage.setItem("selectedAnimalPlant", "");
+window.sessionStorage.setItem("description", "");
