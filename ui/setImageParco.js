@@ -6,14 +6,11 @@ async function setImageParco() {
 }
 
 setImageParco().then(data=>{
-    console.log("dentro setImageparco");
     let count = 0;
     let mainDiv = document.getElementById("parkImages");
     data.forEach(park =>{
-        console.log(sessionStorage.getItem("selectedPark"));
         if (park.Parco == sessionStorage.getItem("selectedPark")){
             park.Immagine.forEach(image =>{
-                console.log("for each image");
                 let div = document.createElement("div");
                 let img = document.createElement("img");
                 if (count == 0){    //different div & img element for first declaration

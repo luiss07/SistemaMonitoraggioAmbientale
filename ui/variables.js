@@ -3,7 +3,8 @@ const variables={
     PHOTO_URL:"http://localhost:49146/images/"
 };
 
-window.sessionStorage.setItem("selectedPark", "");
+window.sessionStorage.setItem("selectedPark", "Gran Paradiso"); //defaul Park
 window.sessionStorage.setItem("selectedAnimalPlant", "");
 window.sessionStorage.setItem("description", "");
-windows.sessionStorage.setItem("selectedPage", "");
+window.sessionStorage.setItem("selectedPage", "");
+window.sessionStorage.setItem("selectedSensor", "");
