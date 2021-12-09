@@ -29,8 +29,7 @@
 
 				<!-- Button trigger modal -->
 				<div class="text-center">
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-						style="margin: 10px ;">
+					<button id="addButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin: 10px;" onclick="setAddButtonPopUp()">
 						Aggiungi sensore
 					</button>
 				</div>
@@ -43,29 +42,25 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title">Aggiungi sensore</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
 								<!-- add sensor form -->
 								<form>
 									<div class="mb-3">
-										<input class="form-control form-control-sm" type="text"
-											placeholder="Tipo animale">
+										<input id="animalField" class="form-control form-control-sm" type="text" placeholder="Tipo animale">
 									</div>
 									<div class="mb-3">
-										<input class="form-control form-control-sm" type="text" placeholder="Parco">
+										<input id="parkField" class="form-control form-control-sm" type="text" placeholder="Parco" readonly>
 									</div>
 									<div class="mb-3">
-										<input class="form-control form-control-sm" type="text"
-											placeholder="Contenimento">
+										<input id="contField" class="form-control form-control-sm" type="text" placeholder="Contenimento">
 									</div>
 									<div class="mb-3">
-										<input class="form-control form-control-sm" type="text"
-											placeholder="ID sensore parco">
+										<input id="idField" class="form-control form-control-sm" type="text" placeholder="ID sensore parco" readonly>
 									</div>
 
-									<button type="submit" class="btn btn-primary">Conferma</button>
+									<button type="submit" class="btn btn-primary" onclick="addSensor()">Conferma</button>
 								</form>
 							</div>
 						</div>
@@ -81,7 +76,6 @@
 						20px;">
 				<div class="card-header">
 					Sensore
-					<!-- da mettere dinamicamente-->
 				</div>
 				<ul class="list-group list-group-flush">
 					<li id="senId" class="list-group-item">ID sensore parco:</li>

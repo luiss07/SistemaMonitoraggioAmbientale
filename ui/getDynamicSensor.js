@@ -60,6 +60,9 @@ setTableSensor = (id, pos, tipoA, parco, cont) => {
 
 // API call to delete one sensor
 deleteSensor = () => {
+    if (!confirm("Sei sicuro?")) {
+        return;
+    }
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem('selectedSensor'), {
         method: 'DELETE'
     })
@@ -73,5 +76,49 @@ deleteSensor = () => {
         });
 
     $("#loadJQuery").load("sensori.html"); //reload the page to update the sensor list
+}
+
+//API call to add one sensor
+addSensor = () => {
+    //let _data = ;
+    fetch(variables.API_URL + 'sensoreGPS', {
+        method: 'POST',
+        body: JSON.stringify({
+            "posizione": "50 50 50", //da definire come generarla
+            "tipoAnimale": document.getElementById('animalField').value,
+            "parco": sessionStorage.getItem('selectedPark'),
+            "contenimento": document.getElementById('contField').value,
+            "senId": document.getElementById('idField').value
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not OK');
+            }
+            response.json()
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+
+    //$("#loadJQuery").load("sensori.html"); //reload the page to update the sensor list
+}
+
+setAddButtonPopUp = () => {
+    document.getElementById('parkField').setAttribute('value', sessionStorage.getItem("selectedPark"));
+    fetch(variables.API_URL + 'sensoreGPS', {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            let maxId = 0;
+            data.forEach(sen => {
+                if (sen.Parco == sessionStorage.getItem('selectedPark')) {
+                    //console.log(tmp + ' ' +sen.SenId);
+                    maxId = Math.max(maxId, sen.SenId);
+                }
+            })
+            document.getElementById('idField').setAttribute('value', maxId+1);
+        });
 }
 
