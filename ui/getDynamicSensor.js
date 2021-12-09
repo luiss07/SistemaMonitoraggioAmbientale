@@ -20,7 +20,7 @@ getSensorList().then(data => {
                 setTableSensor(sensore.SenId, sensore.Posizione, sensore.TipoAnimale, sensore.Parco, sensore.Contenimento);
                 enableDeleteButton(false);
             }
-            // settare cosa fa l'elemento quando cliccato 
+
             li.appendChild(a);
             sensorList.appendChild(li);
         }
@@ -28,6 +28,7 @@ getSensorList().then(data => {
     })
 })
 
+//return formatted true & false value
 contToStr = (s) => {
     if (s)
         return 'TRUE';
@@ -37,15 +38,18 @@ contToStr = (s) => {
         return '';
 }
 
+//set the sub-title of sensors page
 setSensorName = () => {
     let sensorName = document.getElementById("sensorName");
     sensorName.innerHTML = sessionStorage.getItem("selectedPark");
 }
 
+//enable/disable delete button
 enableDeleteButton = (enabled) => {
     document.getElementById("deleteButton").disabled = enabled;
 }
 
+//set table parameters
 setTableSensor = (id, pos, tipoA, parco, cont) => {
     document.getElementById("senId").innerHTML = 'ID sensore parco: ' + id;
     document.getElementById("senPosizione").innerHTML = 'Posizione: ' + pos;
@@ -54,6 +58,7 @@ setTableSensor = (id, pos, tipoA, parco, cont) => {
     document.getElementById("senContenimento").innerHTML = 'Contenimento: ' + contToStr(cont);
 }
 
+// API call to delete one sensor
 deleteSensor = () => {
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem('selectedSensor'), {
         method: 'DELETE'
