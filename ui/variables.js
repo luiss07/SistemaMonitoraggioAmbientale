@@ -6,3 +6,4 @@ const variables={
 window.sessionStorage.setItem("selectedPark", "");
 window.sessionStorage.setItem("selectedAnimalPlant", "");
 window.sessionStorage.setItem("description", "");
+windows.sessionStorage.setItem("selectedPage", "");

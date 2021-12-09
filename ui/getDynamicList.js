@@ -17,6 +17,7 @@ getParkList().then(data=>{
         li.onclick = function() {
             $("#loadJQuery").load("parco.html");
             sessionStorage["selectedPark"] = park.Parco;
+            sessionStorage["selectedPage"] = "parco";
             $("#nav-placeholder").load("navbar.html"); //reload to update the navbar with fauna & flora data
             return false;
         };
@@ -55,6 +56,7 @@ getFaunaList().then(data=>{
                         $("#loadJQuery").load("flora_fauna.html");
                         sessionStorage["selectedAnimalPlant"] = animal.Tipo;
                         sessionStorage["description"] = animal.Descrizione;
+                        sessionStorage["selectedPage"] = "fauna";
                         return false;
                     };
                     li.appendChild(a);
@@ -92,6 +94,7 @@ getFloraList().then(data=>{
                         $("#loadJQuery").load("flora_fauna.html");
                         sessionStorage["selectedAnimalPlant"] = plant.Tipo;
                         sessionStorage["description"] = plant.Descrizione;
+                        sessionStorage["selectedPage"] = "flora";
                         return false;
                     };
                     li.appendChild(a);
