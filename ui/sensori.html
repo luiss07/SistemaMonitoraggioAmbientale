@@ -16,17 +16,13 @@
 						data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px ;">
 						Sensori
 					</button>
-					<ul id="listasensori" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						<!-- lista dinamica -->
-						<!-- <li><a class="dropdown-item" href="#">Prova</a></li> -->
-					</ul>
+					<ul id="listasensori" class="dropdown-menu" aria-labelledby="dropdownMenuButton1"></ul>
 				</div>
 
 				<div class="text-center">
-					<button class="btn btn-danger" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-						aria-expanded="false" style="margin: 10px ;">
+					<button id="deleteButton" class="btn btn-danger" type="button" aria-expanded="false" style="margin: 10px ;" onclick="deleteSensor()">
 						Elimina sensore
-						<!-- document.getElementById("myBtn").disabled = true;  PER DISABILITARLO-->
+						<!--data-bs-toggle="dropdown"-->
 					</button>
 				</div>
 
@@ -102,4 +98,4 @@
 </div>
 
 <script src="getDynamicSensor.js">  </script>
-<script>setSensorName();</script>
+<script>setSensorName(); enableDeleteButton(true);</script>
