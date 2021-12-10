@@ -40,8 +40,7 @@ contToStr = (s) => {
 
 //set the sub-title of sensors page
 setSensorName = () => {
-    let sensorName = document.getElementById("sensorName");
-    sensorName.innerHTML = sessionStorage.getItem("selectedPark");
+    document.getElementById("sensorPark").innerHTML = sessionStorage.getItem("selectedPark");
 }
 
 //enable/disable delete button
