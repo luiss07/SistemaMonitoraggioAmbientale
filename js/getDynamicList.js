@@ -15,10 +15,10 @@ getParkList().then(data=>{
         a.setAttribute("class", "dropdown-item");
 
         li.onclick = function() {
-            $("#loadJQuery").load("parco.html");
+            $("#loadJQuery").load("../ui/parco.html");
             sessionStorage["selectedPark"] = park.Parco;
             sessionStorage["selectedPage"] = "parco";
-            $("#nav-placeholder").load("navbar.html"); //reload to update the navbar with fauna & flora data
+            $("#nav-placeholder").load("../ui/navbar.html"); //reload to update the navbar with fauna & flora data
             return false;
         };
 
@@ -53,7 +53,7 @@ getFaunaList().then(data=>{
                     a.setAttribute("class", "dropdown-item");
 
                     li.onclick = function() {
-                        $("#loadJQuery").load("flora_fauna.html");
+                        $("#loadJQuery").load("../ui/flora_fauna.html");
                         sessionStorage["selectedAnimalPlant"] = animal.Tipo;
                         sessionStorage["description"] = animal.Descrizione;
                         sessionStorage["selectedPage"] = "fauna";
@@ -91,7 +91,7 @@ getFloraList().then(data=>{
                     a.setAttribute("class", "dropdown-item");
 
                     li.onclick = function() {
-                        $("#loadJQuery").load("flora_fauna.html");
+                        $("#loadJQuery").load("../ui/flora_fauna.html");
                         sessionStorage["selectedAnimalPlant"] = plant.Tipo;
                         sessionStorage["description"] = plant.Descrizione;
                         sessionStorage["selectedPage"] = "flora";

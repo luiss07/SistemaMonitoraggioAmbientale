@@ -75,7 +75,7 @@ deleteSensor = () => {
             console.error('There has been a problem with your fetch operation:', error);
         });
 
-    $("#loadJQuery").load("sensori.html"); //reload the page to update the sensor list
+    $("#loadJQuery").load("../ui/sensori.html"); //reload the page to update the sensor list
 }
 
 //API call to add one sensor
@@ -114,7 +114,6 @@ setAddButtonPopUp = () => {
             let maxId = 0;
             data.forEach(sen => {
                 if (sen.Parco == sessionStorage.getItem('selectedPark')) {
-                    //console.log(tmp + ' ' +sen.SenId);
                     maxId = Math.max(maxId, sen.SenId);
                 }
             })

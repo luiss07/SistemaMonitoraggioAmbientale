@@ -6,11 +6,9 @@ async function setImageFloraFauna() {
 }
 
 setImageFloraFauna().then(data=>{
-    console.log("dentro setImageparco");
     let count = 0;
     let mainDiv = document.getElementById("ffImages");
     data.forEach(elem =>{
-        console.log(sessionStorage.getItem("selectedAnimalPlant"));
         if (elem.Tipo == sessionStorage.getItem("selectedAnimalPlant")){
             elem.Immagine.forEach(image =>{
                 let div = document.createElement("div");
