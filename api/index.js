@@ -185,7 +185,7 @@ app.get('/api/sensoreGPS', (request, response) => {
         response.send(result);
     })
 })
-
+/*
 app.get('/api/sensoreGPS/:id', (request, response) => {
     let senId = new ObjectId(request.params.id);
     database.collection("SensoreGPS").find({
@@ -198,7 +198,7 @@ app.get('/api/sensoreGPS/:id', (request, response) => {
         response.send(result);
     })
 })
-
+*/
 app.post('/api/sensoreGPS', (request, response) => {
 
     database.collection("SensoreGPS").count({}, function (error) {

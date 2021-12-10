@@ -103,8 +103,9 @@ addSensor = () => {
             console.error('There has been a problem with your fetch operation:', error);
         });
 
-    $('#addSensorModal').modal('hide');
-    getSensorList(); //reload the page to update sensor list
+    $('#addSensorModal').modal('hide'); //hide form add button
+    $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
+    getSensorList(); //reload sensors list
 }
 
 setAddButtonPopUp = () => {
