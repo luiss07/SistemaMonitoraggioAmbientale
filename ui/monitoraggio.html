@@ -1,7 +1,7 @@
 <!-- title container -->
 <div class="container myTitle">
     <h1>Monitoraggio</h1>
-    <h2 class="fw-light">Nome parco</h2>
+    <h2 class="fw-light" id="monitoringPark">Nome parco</h2>
 </div>
 
 
@@ -11,46 +11,46 @@
         <div class="col">
             <div class="card border-0 mb-3">
                 <!-- da mettere dinamiche le immagini colorate -->
-                <img src="../images/cerchi/cerchio_rosso.png" alt="" class="circle-dim">
+                <img id="imgAllagamento" src="" alt="" class="circle-dim">
                 <div class="card-body card-img-overlay">
                     <!-- da mettere dinamiche le percentuali -->
-                    <h1 class="card-text myCenter">12%</h1>
+                    <h1 id="pAllagamento" class="card-text myCenter"></h1>
                 </div>
                 <h2 class="card-title text-center">Allagamento</h2>
             </div>
         </div>
         <div class="col">
             <div class="card border-0 mb-3">
-                <img src="../images/cerchi/cerchio_arancio.png" alt="" class="circle-dim">
+                <img id="imgSiccita" src="" alt="" class="circle-dim">
                 <div class="card-body card-img-overlay">
-                    <h1 class="card-text myCenter">12%</h1>
+                    <h1 id="pSiccita" class="card-text myCenter"></h1>
                 </div>
                 <h2 class="card-title text-center">Siccità</h2>
             </div>
         </div>
         <div class="col">
             <div class="card border-0 mb-3">
-                <img src="../images/cerchi/cerchio.png" alt="" class="circle-dim">
+                <img id="imgIncendio" src="" alt="" class="circle-dim">
                 <div class="card-body card-img-overlay">
-                    <h1 class="card-text myCenter">12%</h1>
+                    <h1 id="pIncendio" class="card-text myCenter"></h1>
                 </div>
                 <h2 class="card-title text-center">Incendio</h2>
             </div>
         </div>
         <div class="col">
             <div class="card border-0 mb-3">
-                <img src="../images/cerchi/cerchio.png" alt="" class="circle-dim">
+                <img id="imgRiIdriche" src="" alt="" class="circle-dim">
                 <div class="card-body card-img-overlay">
-                    <h1 class="card-text myCenter">12%</h1>
+                    <h1 id="pRiIdriche" class="card-text myCenter"></h1>
                 </div>
                 <h2 class="card-title text-center">Risorse Idriche</h2>
             </div>
         </div>
         <div class="col">
             <div class="card border-0 mb-3">
-                <img src="../images/cerchi/cerchio.png" alt="" class="circle-dim">
+                <img id="imgMeteo" src="" alt="" class="circle-dim">
                 <div class="card-body card-img-overlay">
-                    <h1 class="card-text myCenter">12%</h1>
+                    <h1 id="pMeteo" class="card-text myCenter"></h1>
                 </div>
                 <h2 class="card-title text-center">Meteo</h2>
             </div>
@@ -66,3 +66,6 @@
         registrate dai sensori ambientali posti nel parco.
     </h3>
 </div>
+
+<script src="../js/setMonitoring.js"></script>
+<script>setSensorName();</script>
