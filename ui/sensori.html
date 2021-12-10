@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="dropdown text-center">
 					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1"
-						data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px ;">
+						data-bs-toggle="dropdown" aria-expanded="false" style="margin: 10px;" onclick="getSensorList()">
 						Sensori
 					</button>
 					<ul id="listasensori" class="dropdown-menu" aria-labelledby="dropdownMenuButton1"></ul>
@@ -29,15 +29,15 @@
 
 				<!-- Button trigger modal -->
 				<div class="text-center">
-					<button id="addButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin: 10px;" onclick="setAddButtonPopUp()">
+					<button id="addButton" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSensorModal" style="margin: 10px;" onclick="setAddButtonPopUp()">
 						Aggiungi sensore
 					</button>
 				</div>
 
 
 				<!-- Modal -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-					aria-hidden="true">
+				<div class="modal fade" id="addSensorModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+					>
 					<div class="modal-dialog modal-dialog-centered">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -91,5 +91,5 @@
 	<div class="col-1"></div>
 </div>
 
-<script src="../js/getDynamicSensor.js">  </script>
-<script>setSensorName(); enableDeleteButton(true);</script>
+<script src="../js/setSensorsPage.js">  </script>
+<script>setSensorName(); deleteButtonDisabled(true);</script>

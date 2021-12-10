@@ -18,7 +18,7 @@ getSensorList().then(data => {
             li.onclick = function () {
                 sessionStorage["selectedSensor"] = sensore._id;
                 setTableSensor(sensore.SenId, sensore.Posizione, sensore.TipoAnimale, sensore.Parco, sensore.Contenimento);
-                enableDeleteButton(false);
+                deleteButtonDisabled(false);
             }
 
             li.appendChild(a);
@@ -45,7 +45,7 @@ setSensorName = () => {
 }
 
 //enable/disable delete button
-enableDeleteButton = (enabled) => {
+deleteButtonDisabled = (enabled) => {
     document.getElementById("deleteButton").disabled = enabled;
 }
 
@@ -74,34 +74,38 @@ deleteSensor = () => {
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
         });
-
-    $("#loadJQuery").load("../ui/sensori.html"); //reload the page to update the sensor list
+    getSensorList();
+    deleteButtonDisabled(true);
 }
 
 //API call to add one sensor
 addSensor = () => {
-    //let _data = ;
+    let raw = {
+        posizione: "50 50 50", 
+        tipoAnimale: document.getElementById('animalField').value,
+        parco: sessionStorage.getItem('selectedPark'),
+        contenimento: document.getElementById('contField').value,
+        senId: document.getElementById('idField').value
+    };
     fetch(variables.API_URL + 'sensoreGPS', {
         method: 'POST',
-        body: JSON.stringify({
-            "posizione": "50 50 50", //da definire come generarla
-            "tipoAnimale": document.getElementById('animalField').value,
-            "parco": sessionStorage.getItem('selectedPark'),
-            "contenimento": document.getElementById('contField').value,
-            "senId": document.getElementById('idField').value
-        })
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(raw) //definire come generare la posizione
     })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not OK');
             }
-            response.json()
+            response.json();
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
         });
 
-    //$("#loadJQuery").load("sensori.html"); //reload the page to update the sensor list
+    $('#addSensorModal').modal('hide');
+    getSensorList(); //reload the page to update sensor list
 }
 
 setAddButtonPopUp = () => {
@@ -120,4 +124,3 @@ setAddButtonPopUp = () => {
             document.getElementById('idField').setAttribute('value', maxId+1);
         });
 }
-
