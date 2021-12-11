@@ -27,12 +27,6 @@ getParkList().then(data=>{
     })
 })
 
-// used in park.html to set the H1 text
-function setParkName() {
-    let parkName = document.getElementById("parkName");
-    parkName.innerHTML = sessionStorage.getItem("selectedPark");
-}
-
 // API GET for fauna list
 
 async function getFaunaList(){
@@ -108,12 +102,9 @@ getFloraList().then(data=>{
     
 })
 
-function setFloraFaunaPage() {
-    let faunaFloraName = document.getElementById("faunaFloraName");
-    faunaFloraName.innerHTML = sessionStorage.getItem("selectedAnimalPlant");
-    let parkName = document.getElementById("ffParkName");
-    parkName.innerHTML = sessionStorage.getItem("selectedPark");
-    let ffDesc = document.getElementById("ffDescription");
-    ffDesc.innerHTML = sessionStorage.getItem("description");
+setFloraFaunaPage = () => {
+    document.getElementById("faunaFloraName").innerHTML = sessionStorage.getItem("selectedAnimalPlant");
+    document.getElementById("ffParkName").innerHTML = sessionStorage.getItem("selectedPark");
+    document.getElementById("ffDescription").innerHTML = sessionStorage.getItem("description");
 }
 

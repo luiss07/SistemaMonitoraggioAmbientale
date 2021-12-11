@@ -83,7 +83,7 @@ setMonitoring().then(data => {
         console.log("meteo = " + meteo);
         console.log("");
 
-    }, 1000 * 2 * 01);// every 10 minutes
+    }, 10000 * 2 * 01);// every 10 minutes
 })
 
 
