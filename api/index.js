@@ -166,7 +166,7 @@ app.put('/api/rischioAmbientale', (request, response) => {
                 allagamento: request.body['allagamento'],
                 incendio: request['incendio'],
                 meteo: request.body['meteo'],
-                parco: request.body['parco'],
+                siccita: request.body['siccita'],
                 risoreIdriche: request.body['risoreIdriche'],
             }
 

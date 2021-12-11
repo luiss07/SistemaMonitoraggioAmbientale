@@ -1,4 +1,4 @@
-// genera numeri casuali tra min e max
+// generate random numbers between min and max
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -18,14 +18,6 @@ function change_percentage(percentage) {
     return percentage;
 }
 
-// al posto di questo serve prendere i numeri dal database
-/*
-var allagamento = getRandom(0, 100);
-var siccita = getRandom(0, 100);
-var incendio = getRandom(0, 100);
-var risorse_idriche = getRandom(0, 100);
-var meteo = getRandom(0, 100);
-*/
 
 // ogni 10 minuti cambia il valore della percentuale chiamando change_percentage
 var handle = setInterval(function () {
