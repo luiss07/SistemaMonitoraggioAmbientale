@@ -4,9 +4,10 @@ const variables={
 };
 
 window.sessionStorage.setItem("selectedPark", "Gran Paradiso"); //defaul Park
+window.sessionStorage.setItem("parkPos", "45° 32' 00 N 7° 17' 00 E"); // default park coordinates
 window.sessionStorage.setItem("selectedAnimalPlant", "");
 window.sessionStorage.setItem("description", "");
-window.sessionStorage.setItem("selectedPage", "");
+window.sessionStorage.setItem("selectedPage", "monitoraggio"); //default page
 window.sessionStorage.setItem("selectedSensor", "");
 
 

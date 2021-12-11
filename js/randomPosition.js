@@ -1,10 +1,15 @@
+/*
+    THIS JAVASCRIPT FILE CONTAINS SOME FUNCTION TO
+    SIMULATE AN API GET TO RECIVE THE POSITION OF
+    THE SENSOR JUST ADDED
+*/
 // generate random number between min and max (integer)
-function getRandom(min, max) {
+getRandom = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 // converts DD in DMS
-function toDegreesMinutesAndSeconds(coordinate) {
+toDegreesMinutesAndSeconds = (coordinate) => {
     var absolute = Math.abs(coordinate);
     var degrees = Math.floor(absolute);
     var minutesNotTruncated = (absolute - degrees) * 60;
@@ -14,7 +19,7 @@ function toDegreesMinutesAndSeconds(coordinate) {
     return degrees + "° " + minutes + "' " + seconds;
 }
 
-function convertDMS(lat, lng) {
+convertDMS = (lat, lng) => {
     var latitude = toDegreesMinutesAndSeconds(lat);
     var latitudeCardinal = lat >= 0 ? "N" : "S";
 
@@ -25,7 +30,7 @@ function convertDMS(lat, lng) {
 }
 
 // position must be the position of the park (in DMS notation)
-function randomPositionGenerator(position) {
+randomPositionGenerator = (position) => {
     // conversion between DMS and DD notation
     ParseDMS(position);
 

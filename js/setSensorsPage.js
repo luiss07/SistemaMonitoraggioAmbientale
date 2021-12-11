@@ -73,14 +73,14 @@ deleteSensor = () => {
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
         });
-    getSensorList();
+    $("#loadJQuery").load("../ui/sensori.html");
     deleteButtonDisabled(true);
 }
 
 //API call to add one sensor
 addSensor = () => {
     let raw = {
-        posizione: "50 50 50", 
+        posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')), 
         tipoAnimale: document.getElementById('animalField').value,
         parco: sessionStorage.getItem('selectedPark'),
         contenimento: document.getElementById('contField').value,

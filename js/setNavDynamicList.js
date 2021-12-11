@@ -18,6 +18,7 @@ getParkList().then(data=>{
             $("#loadJQuery").load("../ui/parco.html");
             sessionStorage["selectedPark"] = park.Parco;
             sessionStorage["selectedPage"] = "parco";
+            sessionStorage["parkPos"] = park.Posizione;
             $("#nav-placeholder").load("../ui/navbar.html"); //reload to update the navbar with fauna & flora data
             return false;
         };
