@@ -34,8 +34,6 @@ setImageParco().then(data => {
     })
 })
 
-//--------------------------------------------------------------------
-
 //API GET to set park map
 
 async function setMapParco() {
@@ -49,7 +47,7 @@ setMapParco().then(data => {
         if (park.Parco == sessionStorage.getItem("selectedPark")) {
             ParseDMS(park.Posizione);
 
-            // MapBox map
+            // set map zoom
             if (park.Parco == "La Mandria") {
                 setZoom(12);
             } else if (park.Parco == "Stelvio") {
@@ -61,6 +59,7 @@ setMapParco().then(data => {
     })
 })
 
+// function to set zoom
 setZoom = (num) => {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZG9uZ2kiLCJhIjoiY2t4MGk4ZDN1MThpbzJvcDhpd294ZDAyMSJ9.dlbCTLS_xF3wQ1kD2HEIQw';
     var map = new mapboxgl.Map({

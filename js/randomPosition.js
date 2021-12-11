@@ -1,12 +1,8 @@
 /*
     THIS JAVASCRIPT FILE CONTAINS SOME FUNCTION TO
-    SIMULATE AN API GET TO RECIVE THE POSITION OF
-    THE SENSOR JUST ADDED
+    SIMULATE AN API GET THAT RECIVE THE CURRENT 
+    POSITION OF THE SENSOR JUST ADDED
 */
-// generate random number between min and max (integer)
-getRandom = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
 
 // converts DD in DMS
 toDegreesMinutesAndSeconds = (coordinate) => {

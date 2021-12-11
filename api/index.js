@@ -164,10 +164,10 @@ app.put('/api/rischioAmbientale', (request, response) => {
             $set:
             {
                 allagamento: request.body['allagamento'],
-                incendio: request['incendio'],
+                incendio: request.body['incendio'],
                 meteo: request.body['meteo'],
                 siccita: request.body['siccita'],
-                risoreIdriche: request.body['risoreIdriche'],
+                risorseIdriche: request.body['risorseIdriche'],
             }
 
         }

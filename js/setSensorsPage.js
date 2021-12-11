@@ -91,7 +91,7 @@ addSensor = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(raw) //definire come generare la posizione
+        body: JSON.stringify(raw)
     })
         .then(response => {
             if (!response.ok) {
