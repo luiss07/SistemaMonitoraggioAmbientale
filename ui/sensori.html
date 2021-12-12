@@ -48,13 +48,25 @@
 								<!-- add sensor form -->
 								<form>
 									<div class="mb-3">
-										<input id="animalField" class="form-control form-control-sm" type="text" placeholder="Tipo animale">
+										<select class="form-select form-select-sm" aria-label="Default select example">
+											<option selected>Tipo animale</option>
+											<!-- da popolare -->
+											<option value="1">Orso</option>
+											<option value="2">gesu</option>
+											<option value="3">madonna</option>
+										</select>
+										<!-- <input id="animalField" class="form-control form-control-sm" type="text" placeholder="Tipo animale"> -->
 									</div>
 									<div class="mb-3">
 										<input id="parkField" class="form-control form-control-sm" type="text" placeholder="Parco" readonly>
 									</div>
 									<div class="mb-3">
-										<input id="contField" class="form-control form-control-sm" type="text" placeholder="Contenimento">
+										<select class="form-select form-select-sm" aria-label="Default select example">
+											<option selected>Contenimento</option>
+											<option value="1">true</option>
+											<option value="2">false</option>
+										</select>
+										<!-- <input id="contField" class="form-control form-control-sm" type="text" placeholder="Contenimento"> -->
 									</div>
 									<div class="mb-3">
 										<input id="idField" class="form-control form-control-sm" type="text" placeholder="ID sensore parco" readonly>
