@@ -1,3 +1,11 @@
+setFloraFaunaPage = () => {
+    document.getElementById("faunaFloraName").innerHTML = sessionStorage.getItem("selectedAnimalPlant");
+    document.getElementById("ffParkName").innerHTML = sessionStorage.getItem("selectedPark");
+    document.getElementById("ffDescription").innerHTML = sessionStorage.getItem("description");
+}
+
+// API CALL to set dynamically the images
+
 async function setImageFloraFauna() {
     let sPage = sessionStorage.getItem("selectedPage");
     let response = await fetch(variables.API_URL+sPage);
@@ -32,3 +40,4 @@ setImageFloraFauna().then(data=>{
         }
     })
 })
+

@@ -1,4 +1,4 @@
-// API GET for Park list
+// API call to GET Park list
 
 async function getParkList() {
     let response = await fetch(variables.API_URL+'parco');
@@ -28,7 +28,7 @@ getParkList().then(data=>{
     })
 })
 
-// API GET for fauna list
+// API call to GET fauna list
 
 async function getFaunaList(){
     let response = await fetch(variables.API_URL+'fauna');
@@ -65,8 +65,7 @@ getFaunaList().then(data=>{
     
 })
 
-
-//API GET for flora list
+//API call to GET flora list
 
 async function getFloraList(){
     let response = await fetch(variables.API_URL+'flora');
@@ -102,10 +101,3 @@ getFloraList().then(data=>{
     }
     
 })
-
-setFloraFaunaPage = () => {
-    document.getElementById("faunaFloraName").innerHTML = sessionStorage.getItem("selectedAnimalPlant");
-    document.getElementById("ffParkName").innerHTML = sessionStorage.getItem("selectedPark");
-    document.getElementById("ffDescription").innerHTML = sessionStorage.getItem("description");
-}
-

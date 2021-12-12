@@ -1,4 +1,4 @@
-// API GET for Sensor List
+// API call to GET Sensor List
 
 async function getSensorList() {
     let response = await fetch(variables.API_URL + 'sensoreGPS');
@@ -108,6 +108,7 @@ addSensor = () => {
     getSensorList(); //reload sensors list
 }
 
+// Used in onclick event of "Aggiungi sensore" button to set precompiled fields
 setAddButtonPopUp = () => {
     document.getElementById('parkField').setAttribute('value', sessionStorage.getItem("selectedPark"));
     fetch(variables.API_URL + 'sensoreGPS', {
