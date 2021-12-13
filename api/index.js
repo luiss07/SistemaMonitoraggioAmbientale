@@ -122,8 +122,32 @@ app.get('/api/fauna', (request, response) => {
     })
 })
 
+app.get('/api/fauna/:animale', (request, response) => {
+    database.collection("Fauna").find({
+        Tipo: request.params.animale
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 app.get('/api/flora', (request, response) => {
     database.collection("Flora").find({}).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
+app.get('/api/flora/:pianta', (request, response) => {
+    database.collection("Flora").find({
+        Tipo: request.params.pianta
+    }).toArray((error, result) => {
         if (error) {
             console.log(error);
         }
@@ -164,6 +188,18 @@ app.get('/api/rischioAmbientale', (request, response) => {
     })
 })
 
+app.get('/api/rischioAmbientale/:parco', (request, response) => {
+    database.collection("rischioAmbientale").find({
+        parco: request.params.parco
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 app.put('/api/rischioAmbientale', (request, response) => {
 
     database.collection("rischioAmbientale").updateOne(
@@ -188,8 +224,10 @@ app.put('/api/rischioAmbientale', (request, response) => {
     response.json("Updated Successfully");
 })
 
-app.get('/api/sensoreGPS', (request, response) => {
-    database.collection("SensoreGPS").find({}).toArray((error, result) => {
+app.get('/api/sensoreGPS/:parco', (request, response) => {
+    database.collection("SensoreGPS").find({
+        Parco: request.params.parco
+    }).toArray((error, result) => {
         if (error) {
             console.log(error);
         }

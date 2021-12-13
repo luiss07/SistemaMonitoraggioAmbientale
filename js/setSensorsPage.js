@@ -1,7 +1,7 @@
 // API call to GET Sensor List
 
 async function getSensorList() {
-    let response = await fetch(variables.API_URL + 'sensoreGPS');
+    let response = await fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem("selectedPark"));
     let data = await response.json();
     return data;
 }
@@ -9,22 +9,19 @@ async function getSensorList() {
 getSensorList().then(data => {
     let sensorList = document.getElementById('listasensori');
     data.forEach(sensore => {
-        if (sensore.Parco == sessionStorage.getItem("selectedPark")) {
-            let li = document.createElement('li');
-            let a = document.createElement('a');
-            a.innerHTML = "Sen" + sensore.SenId + '-' + sensore.TipoAnimale;
-            a.setAttribute("class", "dropdown-item");
+        let li = document.createElement('li');
+        let a = document.createElement('a');
+        a.innerHTML = "Sen" + sensore.SenId + '-' + sensore.TipoAnimale;
+        a.setAttribute("class", "dropdown-item");
 
-            li.onclick = function () {
-                sessionStorage["selectedSensor"] = sensore._id;
-                setTableSensor(sensore.SenId, sensore.Posizione, sensore.TipoAnimale, sensore.Parco, sensore.Contenimento);
-                deleteButtonDisabled(false);
-            }
-
-            li.appendChild(a);
-            sensorList.appendChild(li);
+        li.onclick = function () {
+            sessionStorage["selectedSensor"] = sensore._id;
+            setTableSensor(sensore.SenId, sensore.Posizione, sensore.TipoAnimale, sensore.Parco, sensore.Contenimento);
+            deleteButtonDisabled(false);
         }
 
+        li.appendChild(a);
+        sensorList.appendChild(li);
     })
 })
 
@@ -41,6 +38,7 @@ contToStr = (s) => {
 //set the sub-title of sensors page
 setSensorName = () => {
     document.getElementById("sensorPark").innerHTML = sessionStorage.getItem("selectedPark");
+    sessionStorage['selectedPage'] = 'Sensori';
 }
 
 //enable/disable delete button
@@ -80,7 +78,7 @@ deleteSensor = () => {
 //API call to add one sensor
 addSensor = () => {
     let raw = {
-        posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')), 
+        posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')),
         tipoAnimale: document.getElementById('animalField').value,
         parco: sessionStorage.getItem('selectedPark'),
         contenimento: document.getElementById('contField').value,
@@ -111,17 +109,15 @@ addSensor = () => {
 // Used in onclick event of "Aggiungi sensore" button to set precompiled fields
 setAddButtonPopUp = () => {
     document.getElementById('parkField').setAttribute('value', sessionStorage.getItem("selectedPark"));
-    fetch(variables.API_URL + 'sensoreGPS', {
+    fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem("selectedPark"), {
         method: 'GET'
     })
         .then(response => response.json())
         .then(data => {
             let maxId = 0;
             data.forEach(sen => {
-                if (sen.Parco == sessionStorage.getItem('selectedPark')) {
                     maxId = Math.max(maxId, sen.SenId);
-                }
             })
-            document.getElementById('idField').setAttribute('value', maxId+1);
+            document.getElementById('idField').setAttribute('value', maxId + 1);
         });
 }

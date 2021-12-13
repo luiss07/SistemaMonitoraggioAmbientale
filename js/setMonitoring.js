@@ -14,20 +14,16 @@ setSensorName = () => {
 }
 
 async function getMonitoring() {
-    let response = await fetch(variables.API_URL + 'rischioAmbientale');
+    let response = await fetch(variables.API_URL + 'rischioAmbientale/'+ sessionStorage.getItem('selectedPark'));
     let data = await response.json();
     return data;
 }
 
 getMonitoring().then(data => {
     // get percentage & set images
-    data.forEach(risk => {
-        if (risk.parco == sessionStorage.getItem("selectedPark")) {
-            setImgPerc(risk.allagamento, 'Allagamento');
-            setImgPerc(risk.incendio, 'Incendio');
-            setImgPerc(risk.meteo, 'Meteo');
-            setImgPerc(risk.risorseIdriche, 'RiIdriche');
-            setImgPerc(risk.siccita, 'Siccita');
-        }
-    })
+    setImgPerc(data[0].allagamento, 'Allagamento');
+    setImgPerc(data[0].incendio, 'Incendio');
+    setImgPerc(data[0].meteo, 'Meteo');
+    setImgPerc(data[0].risorseIdriche, 'RiIdriche');
+    setImgPerc(data[0].siccita, 'Siccita');
 })
