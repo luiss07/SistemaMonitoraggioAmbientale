@@ -142,6 +142,18 @@ app.get('/api/parco', (request, response) => {
     })
 })
 
+app.get('/api/parco/:name', (request, response) => {
+    database.collection("Parco").find({
+        Parco: request.params.name
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 app.get('/api/rischioAmbientale', (request, response) => {
     database.collection("rischioAmbientale").find({}).toArray((error, result) => {
         if (error) {
@@ -185,11 +197,11 @@ app.get('/api/sensoreGPS', (request, response) => {
         response.send(result);
     })
 })
-/*
-app.get('/api/sensoreGPS/:id', (request, response) => {
-    let senId = new ObjectId(request.params.id);
+
+app.get('/api/sensoreGPS/:animale/:parco', (request, response) => {
     database.collection("SensoreGPS").find({
-        _id: senId
+        TipoAnimale: request.params.animale,
+        Parco: request.params.parco
     }).toArray((error, result) => {
         if (error) {
             console.log(error);
@@ -198,7 +210,7 @@ app.get('/api/sensoreGPS/:id', (request, response) => {
         response.send(result);
     })
 })
-*/
+
 app.post('/api/sensoreGPS', (request, response) => {
 
     database.collection("SensoreGPS").count({}, function (error) {

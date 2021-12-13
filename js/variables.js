@@ -17,7 +17,7 @@ window.sessionStorage.setItem("selectedSensor", "");
 var lat;
 var lng;
 ParseDMS = (input) => {
-    var parts = input.split(/[^\d\w]+/);
+    let parts = input.split(/[^\d\w]+/);
     lat = ConvertDMSToDD(parts[0], parts[1], parts[2], parts[3]);
     lng = ConvertDMSToDD(parts[4], parts[5], parts[6], parts[7]);
 }

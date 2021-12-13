@@ -17,6 +17,7 @@ function drawChart() {
         ['2008', 3.9],
         ['2009', 4.6]
     ]);
+    data.addRows([['2004', 5]]);
 
     var options = {
         title: 'Lengths of dinosaurs, in meters',
