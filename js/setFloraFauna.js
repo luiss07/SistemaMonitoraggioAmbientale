@@ -60,7 +60,18 @@ genMap = () => {
                 .then(response => response.json())
                 .then(data => {
                     if (isEmptyObject(data)) {
-                        let animalMap = setMapBox(); // init map
+
+                        let animalMap;
+                        // set map zoom
+                        if (park[0].Parco == "La Mandria") {
+                            animalMap = setMapBox(12);
+                        } else if (park[0].Parco == "Stelvio") {
+                            animalMap = setMapBox(9);
+                        } else if (park[0].Parco == "Gran Paradiso") {
+                            animalMap = setMapBox(10);
+                        }
+
+
                         data.forEach(sen => {
                             ParseDMS(sen.Posizione);
                             // marker creator
@@ -70,25 +81,31 @@ genMap = () => {
                                 .addTo(animalMap);
 
                         })
-                    }else{
+                    } else {
                         console.log('Questo animale non viene tracciato.');
                     }
                 });
         });
 }
 
+
 // create MapBox
-setMapBox = () => {
+setMapBox = (num) => {
     // MapBox map
     mapboxgl.accessToken = 'pk.eyJ1IjoiZG9uZ2kiLCJhIjoiY2t4MGk4ZDN1MThpbzJvcDhpd294ZDAyMSJ9.dlbCTLS_xF3wQ1kD2HEIQw';
     let map = new mapboxgl.Map({
         container: 'mapFauna',
         style: 'mapbox://styles/mapbox/streets-v11',
-        zoom: 9,
+        zoom: num,
         center: [lng, lat]
     });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+    
     return map;
 }
+
 
 // chech if fetch return empty json == animal is not tracked
 function isEmptyObject(obj) {
