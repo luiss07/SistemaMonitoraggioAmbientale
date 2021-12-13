@@ -47,29 +47,29 @@
 							<div class="modal-body">
 								<!-- add sensor form -->
 								<form>
-									<div class="mb-3">
-										<select class="form-select form-select-sm" aria-label="Default select example">
-											<option selected>Tipo animale</option>
+									<div class="form-floating mb-3">
+										<select id="floatingSelect" class="form-select form-select-sm" aria-label="Default select example">
 											<!-- da popolare -->
 											<option value="1">Orso</option>
 											<option value="2">gesu</option>
 											<option value="3">madonna</option>
 										</select>
+										<label for="floatingSelect">Tipo animale</label>
 										<!-- <input id="animalField" class="form-control form-control-sm" type="text" placeholder="Tipo animale"> -->
 									</div>
 									<div class="mb-3">
-										<input id="parkField" class="form-control form-control-sm" type="text" placeholder="Parco" readonly>
+										<input class="form-control form-control-sm" type="text" placeholder="Parco" readonly>
 									</div>
-									<div class="mb-3">
-										<select class="form-select form-select-sm" aria-label="Default select example">
-											<option selected>Contenimento</option>
+									<div class="form-floating mb-3">
+										<select id="floatingSelect" class="form-select form-select-sm" aria-label="Default select example">
 											<option value="1">true</option>
 											<option value="2">false</option>
 										</select>
+										<label for="floatingSelect">Contenimento</label>
 										<!-- <input id="contField" class="form-control form-control-sm" type="text" placeholder="Contenimento"> -->
 									</div>
 									<div class="mb-3">
-										<input id="idField" class="form-control form-control-sm" type="text" placeholder="ID sensore parco" readonly>
+										<input class="form-control form-control-sm" type="text" placeholder="ID sensore parco" readonly>
 									</div>
 
 									<button type="submit" class="btn btn-primary" onclick="addSensor()">Conferma</button>
