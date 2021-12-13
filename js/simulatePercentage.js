@@ -39,6 +39,7 @@ interval = setInterval(() => {
                 } else {
                     // put the new percentage on mongodb
                     setRisk(chg_perc(allagamento), chg_perc(siccita), chg_perc(incendio), chg_perc(risorse_idriche), chg_perc(meteo), risk.parco);
+                    console.log('aggionamento coordinate');
                 }
             })
         });
