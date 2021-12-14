@@ -58,6 +58,7 @@ genMap = () => {
                     if (isEmptyObject(data)) {
 
                         let animalMap;
+                        document.getElementById('mapFauna').setAttribute('style', 'width: 100%; height: 400px; margin-bottom: 50px;')
                         // set map zoom
                         if (park[0].Parco == "La Mandria") {
                             animalMap = setMapBox(12);
@@ -67,7 +68,6 @@ genMap = () => {
                             animalMap = setMapBox(10);
                         }
 
-
                         data.forEach(sen => {
                             ParseDMS(sen.Posizione);
                             // marker creator
@@ -75,7 +75,6 @@ genMap = () => {
                             new mapboxgl.Marker()
                                 .setLngLat([lng, lat])
                                 .addTo(animalMap);
-
                         })
                     } else {
                         console.log('Questo animale non viene tracciato.');
