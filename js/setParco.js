@@ -40,7 +40,7 @@ async function setMapParco() {
 
 setMapParco().then(data => {
     ParseDMS(data[0].Posizione);
-
+    document.getElementById('map').setAttribute('style', 'width: 100%; height: 400px; margin-bottom: 50px;')
     // set map zoom
     if (data[0].Parco == "La Mandria") {
         setZoom(12);
