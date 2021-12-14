@@ -48,7 +48,7 @@
 								<!-- add sensor form -->
 								<form>
 									<div class="form-floating mb-3">
-										<select id="floatingSelect" class="form-select form-select-sm" aria-label="Default select example">
+										<select id="animalField" class="form-select form-select-sm" aria-label="Default select example">
 											<!-- da popolare -->
 											<option value="1">Orso</option>
 											<option value="2">gesu</option>
@@ -58,10 +58,10 @@
 										<!-- <input id="animalField" class="form-control form-control-sm" type="text" placeholder="Tipo animale"> -->
 									</div>
 									<div class="mb-3">
-										<input class="form-control form-control-sm" type="text" placeholder="Parco" readonly>
+										<input id="parkField" class="form-control form-control-sm" type="text" placeholder="Parco" readonly>
 									</div>
 									<div class="form-floating mb-3">
-										<select id="floatingSelect" class="form-select form-select-sm" aria-label="Default select example">
+										<select id="contField" class="form-select form-select-sm" aria-label="Default select example">
 											<option value="1">true</option>
 											<option value="2">false</option>
 										</select>
@@ -69,7 +69,7 @@
 										<!-- <input id="contField" class="form-control form-control-sm" type="text" placeholder="Contenimento"> -->
 									</div>
 									<div class="mb-3">
-										<input class="form-control form-control-sm" type="text" placeholder="ID sensore parco" readonly>
+										<input id="idField" class="form-control form-control-sm" type="text" placeholder="ID sensore parco" readonly>
 									</div>
 
 									<button type="submit" class="btn btn-primary" onclick="addSensor()">Conferma</button>

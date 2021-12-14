@@ -79,9 +79,9 @@ deleteSensor = () => {
 addSensor = () => {
     let raw = {
         posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')),
-        tipoAnimale: document.getElementById('animalField').value,
+        tipoAnimale: document.getElementById("animalField").options[document.getElementById("contField").selectedIndex].text,
         parco: sessionStorage.getItem('selectedPark'),
-        contenimento: document.getElementById('contField').value,
+        contenimento: document.getElementById("contField").options[document.getElementById("contField").selectedIndex].text,
         senId: document.getElementById('idField').value
     };
     fetch(variables.API_URL + 'sensoreGPS', {
@@ -96,10 +96,12 @@ addSensor = () => {
                 throw new Error('Network response was not OK');
             }
             response.json();
+            alert('Sensor added successfully!');
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
-        });
+            alert('There has been a problem with your fetch operation: ' + error);
+        }); 
 
     $('#addSensorModal').modal('hide'); //hide form add button
     $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
