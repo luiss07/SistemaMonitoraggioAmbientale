@@ -94,7 +94,7 @@ app.listen(49146, () => {
  *                       _id:
  *                         type: ObjectId
  *                         description: Id of the animal.
- *                         example: 1489045
+ *                         example: 61a2ae7bb48bb237244bf8a9
  *                       Type:
  *                         type: string
  *                         description: Type of the animal
@@ -103,15 +103,26 @@ app.listen(49146, () => {
  *                         type: string
  *                         description: The animal description.
  *                         example: This is a bear.
- *                       Image:
- *                          type: string
+ *                       Image: 
+ *                          type: array
+ *                          items:
+ *                              type: string
  *                          description: The animal image.
  *                          example: bear.jpg
- *                       SpecieProtetta:
+ *                       Contenimento:
  *                          type: bool
- *                          description: Protected species
+ *                          description: If the species has the GPS sensor attached to it
  *                          example: true
+ *                       Parco:
+ *                          type: array
+ *                          items:
+ *                              type: string
+ *                          description: The list of parks that cointain such animal.
+ *                          example: [ Gran Paradiso, La Mandria ]
  */
+
+
+
 app.get('/api/fauna', (request, response) => {
     database.collection("Fauna").find({}).toArray((error, result) => {
         if (error) {
@@ -133,6 +144,50 @@ app.get('/api/fauna/:animale', (request, response) => {
         response.send(result);
     })
 })
+
+/**
+ * @swagger
+ * /api/flora:
+ *   get:
+ *     summary: Retrieve a list of flora.
+ *     description: Retrieve a list of flora from the Server.
+ *     responses:
+ *       200:
+ *         description: A list of flora.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the vegetal.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Type:
+ *                         type: string
+ *                         description: Type of the vegetal.
+ *                         example: Arnica
+ *                       Description:
+ *                         type: string
+ *                         description: The vegetal description.
+ *                         example: This is the Arnica plant.
+ *                       Image:
+ *                          type: string
+ *                          description: The vegetal image.
+ *                          example: arnica.jpg
+ *                       Parco:
+ *                          type: array
+ *                          items: 
+ *                              type: string
+ *                          description: The list of parks that cointain such vegetable
+ *                          example: [ Gran Paradiso, La Mandria ]
+ *                       
+ */
 
 app.get('/api/flora', (request, response) => {
     database.collection("Flora").find({}).toArray((error, result) => {
