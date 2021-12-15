@@ -211,6 +211,46 @@ app.get('/api/flora/:pianta', (request, response) => {
     })
 })
 
+
+/**
+ * @swagger
+ * /api/parco:
+ *   get:
+ *     summary: Retrieve a list of parks.
+ *     description: Retrieve a list of parks from the Server.
+ *     responses:
+ *       200:
+ *         description: A list of parks.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the park.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Posizione:
+ *                         type: string
+ *                         description: Position of the park
+ *                         example: 45° 32' 00 N 7° 17' 00 E
+ *                       Coordinate:
+ *                         type: string
+ *                         description: URL to get the address of the park's map plugin from Google.
+ *                         example: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89449.64978081748!2d7.204201272472531!3d45.52413689390132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47891f116149b481%3A0xb8f1d32359844c53!2sParco%20Nazionale%20Gran%20Paradiso!5e0!3m2!1sit!2sit!4v1639037968821!5m2!1sit!2sit.
+ *                       Image: 
+ *                          type: array
+ *                          items: 
+ *                              type: string
+ *                          description: The list of images of that park
+ *                          example: [ GranParadiso.png , GranParadiso1.png ]
+ *                       
+ */
 app.get('/api/parco', (request, response) => {
     database.collection("Parco").find({}).toArray((error, result) => {
         if (error) {
@@ -233,6 +273,55 @@ app.get('/api/parco/:name', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/rischioAmbientale:
+ *   get:
+ *     summary: Retrieve a list of enviromental risks of the parks.
+ *     description: Retrieve a list of enviromental risks of the parks from the Server.
+ *     responses:
+ *       200:
+ *         description: A list of enviromental risks.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the park.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       allagamento:
+ *                         type: int32
+ *                         description: "flood level of the park expressed out of 100."
+ *                         example: 86
+ *                       incendio:
+ *                         type: int32
+ *                         description: fire percentage of the park.
+ *                         example: 21
+ *                       meteo: 
+ *                          type: int32
+ *                          description: probability of rain in the park.
+ *                          example: 2
+ *                       parco:
+ *                          type: string
+ *                          description: the name of the park.
+ *                          example: Gran Paradiso
+ *                       risorseIdriche:
+ *                          type: int32
+ *                          description: danger level of water resources to run out in the park.
+ *                          example: 11
+ *                       siccita:
+ *                          type: int32
+ *                          description: drought level of the park
+ *                          example: 90
+ * 
+ */
 app.get('/api/rischioAmbientale', (request, response) => {
     database.collection("rischioAmbientale").find({}).toArray((error, result) => {
         if (error) {
