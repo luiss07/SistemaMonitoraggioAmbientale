@@ -47,12 +47,12 @@ deleteButtonDisabled = (enabled) => {
 }
 
 //set table parameters
-setTableSensor = (id, pos, tipoA, parco, cont) => {
+setTableSensor = (id, pos, tipoA, parco/*, cont*/) => {
     document.getElementById("senId").innerHTML = 'ID sensore parco: ' + id;
     document.getElementById("senPosizione").innerHTML = 'Posizione: ' + pos;
     document.getElementById("senTipoAnimale").innerHTML = 'Tipo Animale: ' + tipoA;
     document.getElementById("senParco").innerHTML = 'Parco: ' + parco;
-    document.getElementById("senContenimento").innerHTML = 'Contenimento: ' + contToStr(cont);
+    //document.getElementById("senContenimento").innerHTML = 'Contenimento: ' + contToStr(cont);
 }
 
 // API call to delete one sensor
@@ -81,7 +81,6 @@ addSensor = () => {
         posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')),
         tipoAnimale: document.getElementById("animalField").options[document.getElementById("contField").selectedIndex].text,
         parco: sessionStorage.getItem('selectedPark'),
-        contenimento: document.getElementById("contField").options[document.getElementById("contField").selectedIndex].text,
         senId: document.getElementById('idField').value
     };
     fetch(variables.API_URL + 'sensoreGPS', {
@@ -110,6 +109,26 @@ addSensor = () => {
 
 // Used in onclick event of "Aggiungi sensore" button to set precompiled fields
 setAddButtonPopUp = () => {
+    fetch(variables.API_URL + 'fauna/' + true, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            let count = 1;
+            let select = document.getElementById('animalField');
+            console.log(data);
+            data.forEach(animal => {
+                animal.Parco.forEach(park => {
+                    if (park == sessionStorage.getItem('sessionStorage')){
+                        let option = document.createElement('option');
+                        option.setAttribute('value', count);
+                        option.innerHTML = animal.Tipo;
+                        count++;
+                        select.appendChild(option);
+                    }
+                })
+            })
+        });
     document.getElementById('parkField').setAttribute('value', sessionStorage.getItem("selectedPark"));
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem("selectedPark"), {
         method: 'GET'

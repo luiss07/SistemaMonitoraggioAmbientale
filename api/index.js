@@ -134,6 +134,18 @@ app.get('/api/fauna/:animale', (request, response) => {
     })
 })
 
+app.get('/api/fauna/:contenimento', (request, response) => {
+    database.collection("Fauna").find({
+        Contenimento: request.params.contenimento
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 app.get('/api/flora', (request, response) => {
     database.collection("Flora").find({}).toArray((error, result) => {
         if (error) {
