@@ -344,6 +344,46 @@ app.get('/api/rischioAmbientale/:parco', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/rischioAmbientale:
+ *   put:
+ *     summary: Modify the values of a park's enviromental statistics.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+*                       allagamento:
+*                         type: int32
+*                         description: "flood level of the park expressed out of 100."
+*                         example: 86
+*                       incendio:
+*                         type: int32
+*                         description: fire percentage of the park.
+*                         example: 21
+*                       meteo: 
+*                          type: int32
+*                          description: probability of rain in the park.
+*                          example: 2
+*                       parco:
+*                          type: string
+*                          description: the name of the park.
+*                          example: Gran Paradiso
+*                       risorseIdriche:
+*                          type: int32
+*                          description: danger level of water resources to run out in the park.
+*                          example: 11
+*                       siccita:
+*                          type: int32
+*                          description: drought level of the park
+*                          example: 90
+ *     responses:
+ *       201:
+ *         description: successful executed
+*/
 app.put('/api/rischioAmbientale', (request, response) => {
 
     database.collection("rischioAmbientale").updateOne(
