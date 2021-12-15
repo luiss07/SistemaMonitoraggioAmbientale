@@ -1,3 +1,7 @@
+.myLogo{
+    width: 55px;
+}
+
 .myCenter{
     margin-top: 50px;
     text-align: center;
@@ -6,7 +10,6 @@
 .circle-dim{
     width: 200px;
     margin: auto;
-
 }
 
 .myTitle{
@@ -23,4 +26,71 @@
     width: 100%;
     height: 400px;
     margin-bottom: 50px;
+}
+
+.myRow{
+    align-items: center;
+}
+
+.myHistogramDiv{
+    min-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.myHistogram{
+    width: 100%;
+    height: 500px;
+}
+
+.myFFDescription{
+    padding: 20px;
+    min-width: 500px;
+}
+
+.myMonitoraggioTextDiv{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.myMonitoraggioText{
+    color: darkgray;
+    text-align: center;
+}
+
+.myTable{
+    max-width: 70%;
+    min-width: 300px;
+    margin: 20px;
+}
+
+.mySensorButtonoMargin{
+    margin: 10px;
+}
+
+.mySensorsButtonDiv{
+    margin: 20px;
+}
+
+.myCarouselMargin{
+    margin-bottom: 50px;
+}
+
+.myCarouselFFDiv{
+    min-width: 500px;
+    padding: 20px;
+}
+
+.myFFFormDiv{
+    min-width: 300px;
+    text-align: center;
+}
+
+.myFFFormText{
+    margin-bottom: 40px;
+}
+
+.myFFForm{
+    width: 300px;
+    margin: auto;
 }
