@@ -393,6 +393,38 @@ app.get('/api/sensoreGPS/:animale/:parco', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/sensoreGPS:
+ *   post:
+ *     summary: Create a GPS sensor.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               Posizione:
+ *                  type: string
+ *                  description: Position of the sensor.
+ *                  example: 45° 28' 23 N 7° 20' 35 E
+ *               TipoAnimale:
+ *                  type: string
+ *                  description: The animal who has the GPS sensor.
+ *                  example: orso
+ *               Parco:
+ *                  type: string
+ *                  description: The park in which the animal is located.
+ *                  example: Gran Paradiso
+ *               senId:
+ *                  type: int32
+ *                  description: An incremental identifier used to address the number of sensors in a park and other functions
+ *                  example: 1
+ *     responses:
+ *       201:
+ *         description: successful executed
+*/
 app.post('/api/sensoreGPS', (request, response) => {
 
     database.collection("SensoreGPS").count({}, function (error) {
@@ -404,7 +436,6 @@ app.post('/api/sensoreGPS', (request, response) => {
             Posizione: request.body['posizione'],
             TipoAnimale: request.body['tipoAnimale'],
             Parco: request.body['parco'],
-            Contenimento: request.body['contenimento'],
             SenId: request.body['senId']
         });
 
@@ -412,6 +443,25 @@ app.post('/api/sensoreGPS', (request, response) => {
     })
 })
 
+
+/**
+ * @swagger
+ * /api/sensoreGPS/{id}:
+ *   delete:
+ *     summary: Delete a GPS sensor.
+ *     parameters:
+ *       - in: path
+ *         id: id
+ *         schema:
+ *             type: ObjectId
+ *         required: true
+ *         description: the id of the sensor to be removed
+ *     responses:
+ *       200:
+ *         description: the sensor was deleted
+ *       404:
+ *         description: the sensor was not found
+*/
 app.delete('/api/sensoreGPS/:id', (request,response) => {
     let senId = new ObjectId(request.params.id);
     database.collection("SensoreGPS").deleteOne({
@@ -420,6 +470,56 @@ app.delete('/api/sensoreGPS/:id', (request,response) => {
 
     response.json("Delete successfully!");
 })
+
+/**
+ * @swagger
+ * /api/storicoFauna:
+ *   get:
+ *     summary: Retrieve the historical of the park.
+ *     description: Retrieve the historical of the park from the Server.
+ *     responses:
+ *       200:
+ *         description: The historical of the park.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the historic.
+ *                         example: 619ffb40588047e3616941db
+ *                       Parco:
+ *                         type: string
+ *                         description: Name of the park that is being referred.
+ *                         example: Gran Paradiso
+ *                       TipoAnimale:
+ *                         type: string
+ *                         description: The species of the animal.
+ *                         example: Orso
+ *                       NumEsemplari:
+ *                         type: int32
+ *                         description: The vegetal image.
+ *                         example: arnica.jpg
+ *                       Giorno:
+ *                         type: int32
+ *                         description: The day of the date.
+ *                         example: 1
+ *                       Anno: 
+ *                         type: int32
+ *                         description: The year of the date.
+ *                         example: 2021
+ *                       Mese:
+ *                         type: int32
+ *                         description: The month of the date.
+ *                         example: 11
+ *                       
+ */
 
 app.get('/api/storicoFauna', (request, response) => {
     database.collection("StoricoFauna").find({}).toArray((error, result) => {
