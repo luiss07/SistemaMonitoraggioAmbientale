@@ -133,6 +133,62 @@ app.get('/api/fauna', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/fauna/{animale}:
+ *   get:
+ *     summary: Retrieve a specific animal.
+ *     description: Retrieve a specific animal from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: animale
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the animal desired
+ *     responses:
+ *       200:
+ *         description: A spefic animal.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the animal.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Type:
+ *                         type: string
+ *                         description: Type of the animal
+ *                         example: Bear
+ *                       Description:
+ *                         type: string
+ *                         description: The animal description.
+ *                         example: This is a bear.
+ *                       Image: 
+ *                          type: array
+ *                          items:
+ *                              type: string
+ *                          description: The animal image.
+ *                          example: bear.jpg
+ *                       Contenimento:
+ *                          type: bool
+ *                          description: If the species has the GPS sensor attached to it
+ *                          example: true
+ *                       Parco:
+ *                          type: array
+ *                          items:
+ *                              type: string
+ *                          description: The list of parks that cointain such animal.
+ *                          example: [ Gran Paradiso, La Mandria ]
+ */
+
 app.get('/api/fauna/:animale', (request, response) => {
     database.collection("Fauna").find({
         Tipo: request.params.animale
@@ -199,6 +255,56 @@ app.get('/api/flora', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/flora/{pianta}:
+ *   get:
+ *     summary: Retrieve a specific vegetal.
+ *     description: Retrieve a specific vegetal from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: pianta
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the vegetal desired
+ *     responses:
+ *       200:
+ *         description: A vegetal.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the vegetal.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Type:
+ *                         type: string
+ *                         description: Type of the vegetal.
+ *                         example: Arnica
+ *                       Description:
+ *                         type: string
+ *                         description: The vegetal description.
+ *                         example: This is the Arnica plant.
+ *                       Image:
+ *                          type: string
+ *                          description: The vegetal image.
+ *                          example: arnica.jpg
+ *                       Parco:
+ *                          type: array
+ *                          items: 
+ *                              type: string
+ *                          description: The list of parks that cointain such vegetable
+ *                          example: [ Gran Paradiso, La Mandria ]
+ *                       
+ */
 app.get('/api/flora/:pianta', (request, response) => {
     database.collection("Flora").find({
         Tipo: request.params.pianta
@@ -261,6 +367,52 @@ app.get('/api/parco', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/parco/{name}:
+ *   get:
+ *     summary: Retrieve a specific park.
+ *     description: Retrieve a park from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the park desired
+ *     responses:
+ *       200:
+ *         description: A specific park.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the park.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Posizione:
+ *                         type: string
+ *                         description: Position of the park
+ *                         example: 45° 32' 00 N 7° 17' 00 E
+ *                       Coordinate:
+ *                         type: string
+ *                         description: URL to get the address of the park's map plugin from Google.
+ *                         example: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89449.64978081748!2d7.204201272472531!3d45.52413689390132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47891f116149b481%3A0xb8f1d32359844c53!2sParco%20Nazionale%20Gran%20Paradiso!5e0!3m2!1sit!2sit!4v1639037968821!5m2!1sit!2sit.
+ *                       Image: 
+ *                          type: array
+ *                          items: 
+ *                              type: string
+ *                          description: The list of images of that park
+ *                          example: [ GranParadiso.png , GranParadiso1.png ]
+ *                       
+ */
 app.get('/api/parco/:name', (request, response) => {
     database.collection("Parco").find({
         Parco: request.params.name
@@ -297,15 +449,15 @@ app.get('/api/parco/:name', (request, response) => {
  *                         description: Id of the park.
  *                         example: 61a2ae7bb48bb237244bf8a9
  *                       allagamento:
- *                         type: int32
+ *                         type: integer
  *                         description: "flood level of the park expressed out of 100."
  *                         example: 86
  *                       incendio:
- *                         type: int32
+ *                         type: integer
  *                         description: fire percentage of the park.
  *                         example: 21
  *                       meteo: 
- *                          type: int32
+ *                          type: integer
  *                          description: probability of rain in the park.
  *                          example: 2
  *                       parco:
@@ -313,11 +465,11 @@ app.get('/api/parco/:name', (request, response) => {
  *                          description: the name of the park.
  *                          example: Gran Paradiso
  *                       risorseIdriche:
- *                          type: int32
+ *                          type: integer
  *                          description: danger level of water resources to run out in the park.
  *                          example: 11
  *                       siccita:
- *                          type: int32
+ *                          type: integer
  *                          description: drought level of the park
  *                          example: 90
  * 
@@ -331,6 +483,63 @@ app.get('/api/rischioAmbientale', (request, response) => {
         response.send(result);
     })
 })
+
+/**
+ * @swagger
+ * /api/rischioAmbientale/{parco}:
+ *   get:
+ *     summary: Retrieve the enviromental risk correlated to the park.
+ *     description: Retrieve the enviromental risk of the park from the Server given a specific park.
+ *     parameters:
+ *       - in: path
+ *         name: parco
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the park that you need information about the enviromental risk
+ *     responses:
+ *       200:
+ *         description: Enviromental risk of the park.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the park.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       allagamento:
+ *                         type: integer
+ *                         description: "flood level of the park expressed out of 100."
+ *                         example: 86
+ *                       incendio:
+ *                         type: integer
+ *                         description: fire percentage of the park.
+ *                         example: 21
+ *                       meteo: 
+ *                          type: integer
+ *                          description: probability of rain in the park.
+ *                          example: 2
+ *                       parco:
+ *                          type: string
+ *                          description: the name of the park.
+ *                          example: Gran Paradiso
+ *                       risorseIdriche:
+ *                          type: integer
+ *                          description: danger level of water resources to run out in the park.
+ *                          example: 11
+ *                       siccita:
+ *                          type: integer
+ *                          description: drought level of the park
+ *                          example: 90
+ * 
+ */
 
 app.get('/api/rischioAmbientale/:parco', (request, response) => {
     database.collection("rischioAmbientale").find({
@@ -357,15 +566,15 @@ app.get('/api/rischioAmbientale/:parco', (request, response) => {
  *             type: object
  *             properties:
 *                       allagamento:
-*                         type: int32
+*                         type: integer
 *                         description: "flood level of the park expressed out of 100."
 *                         example: 86
 *                       incendio:
-*                         type: int32
+*                         type: integer
 *                         description: fire percentage of the park.
 *                         example: 21
 *                       meteo: 
-*                          type: int32
+*                          type: integer
 *                          description: probability of rain in the park.
 *                          example: 2
 *                       parco:
@@ -373,11 +582,11 @@ app.get('/api/rischioAmbientale/:parco', (request, response) => {
 *                          description: the name of the park.
 *                          example: Gran Paradiso
 *                       risorseIdriche:
-*                          type: int32
+*                          type: integer
 *                          description: danger level of water resources to run out in the park.
 *                          example: 11
 *                       siccita:
-*                          type: int32
+*                          type: integer
 *                          description: drought level of the park
 *                          example: 90
  *     responses:
@@ -408,6 +617,54 @@ app.put('/api/rischioAmbientale', (request, response) => {
     response.json("Updated Successfully");
 })
 
+
+/**
+ * @swagger
+ * /api/sensoreGPS/{parco}:
+ *   get:
+ *     summary: Retreive all of the GPS Sensors of a park.
+ *     description: Retreive all of the GPS Sensors of a park from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: parco
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the park
+ *     responses:
+ *       200:
+ *         description: A list of GPS Sensors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the animal.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Posizione:
+ *                         type: string
+ *                         description: Position of the animal
+ *                         example: 45° 28' 23 N 7° 20' 35 E
+ *                       TipoAnimale:
+ *                         type: string
+ *                         description: The animal species.
+ *                         example: Lupo
+ *                       Parco: 
+ *                          type: string
+ *                          description: The name of the park.
+ *                          example: Gran Paradiso
+ *                       SenId:
+ *                          type: integer
+ *                          description: The id of the GPS Sensor.
+ *                          example: 2
+ */
 app.get('/api/sensoreGPS/:parco', (request, response) => {
     database.collection("SensoreGPS").find({
         Parco: request.params.parco
@@ -419,6 +676,61 @@ app.get('/api/sensoreGPS/:parco', (request, response) => {
         response.send(result);
     })
 })
+
+
+/**
+ * @swagger
+ * /api/sensoreGPS/{animale}/{parco}:
+ *   get:
+ *     summary: Retreive all of the GPS Sensors of a park related to a specific species.
+ *     description: Retreive all of the GPS Sensors of a park related to a specific species from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: animale
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the animal
+ *       - in: path
+ *         name: parco
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the park
+ *     responses:
+ *       200:
+ *         description: A list of GPS Sensors.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the animal.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Posizione:
+ *                         type: string
+ *                         description: Position of the animal
+ *                         example: 45° 28' 23 N 7° 20' 35 E
+ *                       TipoAnimale:
+ *                         type: string
+ *                         description: The animal species.
+ *                         example: Lupo
+ *                       Parco: 
+ *                          type: string
+ *                          description: The name of the park.
+ *                          example: Gran Paradiso
+ *                       SenId:
+ *                          type: integer
+ *                          description: The id of the GPS Sensor.
+ *                          example: 2
+ */
 
 app.get('/api/sensoreGPS/:animale/:parco', (request, response) => {
     database.collection("SensoreGPS").find({
@@ -458,7 +770,7 @@ app.get('/api/sensoreGPS/:animale/:parco', (request, response) => {
  *                  description: The park in which the animal is located.
  *                  example: Gran Paradiso
  *               senId:
- *                  type: int32
+ *                  type: integer
  *                  description: An incremental identifier used to address the number of sensors in a park and other functions
  *                  example: 1
  *     responses:
@@ -484,6 +796,26 @@ app.post('/api/sensoreGPS', (request, response) => {
 })
 
 
+
+/**
+ * @swagger
+ * /api/sensoreGPS/{id}:
+ *   delete:
+ *     summary: Delete a GPS sensor.
+ *     description: Given an ObjectId, the sensor gets removed from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *             type: string
+ *         required: true
+ *         description: Insert the Id of the object
+ *     responses:
+ *       200:
+ *         description: the product was deleted
+ *       404:
+ *         description: the product was not found
+*/
 
 app.delete('/api/sensoreGPS/:id', (request,response) => {
     let senId = new ObjectId(request.params.id);
@@ -526,19 +858,19 @@ app.delete('/api/sensoreGPS/:id', (request,response) => {
  *                         description: The species of the animal.
  *                         example: Orso
  *                       NumEsemplari:
- *                         type: int32
+ *                         type: integer
  *                         description: The vegetal image.
  *                         example: arnica.jpg
  *                       Giorno:
- *                         type: int32
+ *                         type: integer
  *                         description: The day of the date.
  *                         example: 1
  *                       Anno: 
- *                         type: int32
+ *                         type: integer
  *                         description: The year of the date.
  *                         example: 2021
  *                       Mese:
- *                         type: int32
+ *                         type: integer
  *                         description: The month of the date.
  *                         example: 11
  *                       
