@@ -405,15 +405,15 @@ app.get('/api/sensoreGPS/:animale/:parco', (request, response) => {
  *           schema:
  *             type: object
  *             properties:
- *               Posizione:
+ *               posizione:
  *                  type: string
  *                  description: Position of the sensor.
  *                  example: 45° 28' 23 N 7° 20' 35 E
- *               TipoAnimale:
+ *               tipoAnimale:
  *                  type: string
  *                  description: The animal who has the GPS sensor.
  *                  example: orso
- *               Parco:
+ *               parco:
  *                  type: string
  *                  description: The park in which the animal is located.
  *                  example: Gran Paradiso
@@ -444,24 +444,7 @@ app.post('/api/sensoreGPS', (request, response) => {
 })
 
 
-/**
- * @swagger
- * /api/sensoreGPS/{id}:
- *   delete:
- *     summary: Delete a GPS sensor.
- *     parameters:
- *       - in: path
- *         id: id
- *         schema:
- *             type: ObjectId
- *         required: true
- *         description: the id of the sensor to be removed
- *     responses:
- *       200:
- *         description: the sensor was deleted
- *       404:
- *         description: the sensor was not found
-*/
+
 app.delete('/api/sensoreGPS/:id', (request,response) => {
     let senId = new ObjectId(request.params.id);
     database.collection("SensoreGPS").deleteOne({
