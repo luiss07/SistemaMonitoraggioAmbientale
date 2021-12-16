@@ -58,7 +58,7 @@ genMap = () => {
                     if (isEmptyObject(data)) {
 
                         let animalMap;
-                        document.getElementById('mapFauna').setAttribute('style', 'width: 100%; height: 400px; margin-bottom: 50px;')
+                        document.getElementById('mapFauna').setAttribute('class', 'map')
                         // set map zoom
                         if (park[0].Parco == "La Mandria") {
                             animalMap = setMapBox(12);
@@ -106,3 +106,55 @@ setMapBox = (num) => {
 function isEmptyObject(obj) {
     return Object.keys(obj).length;
 }
+
+
+//---------------------------------------------------------------------------------------------
+
+// API call to GET years list
+/*
+async function getYearsList(){
+    let response = await fetch(variables.API_URL+'storicoFauna');
+    let data = await response.json();
+    return data;
+}
+
+getYearsList().then(data=>{
+
+    // prima lista
+    let startlist = document.getElementById('startList');
+    if (sessionStorage.getItem("selectedPark") != null){
+        data.forEach(animal => {
+            animal.Parco.forEach(park =>{
+                if(park == sessionStorage.getItem("selectedPark")){
+                    let option = document.createElement("option");
+                    option.innerHTML = animal.Anno;
+                    option.setAttribute("value" = "1") // al posto di uno bisogna mettere un contatore che conda da 1 a n
+
+                    startlist.appendChild(option);
+                }
+            })
+        });
+    }else{
+        console.log("prova");
+    }
+    
+    // seconda lista
+    let finishlist = document.getElementById('finishList');
+    if (sessionStorage.getItem("selectedPark") != null){
+        data.forEach(animal => {
+            animal.Parco.forEach(park =>{
+                if(park == sessionStorage.getItem("selectedPark")){
+                    let option = document.createElement("option");
+                    option.innerHTML = animal.Anno;
+                    option.setAttribute("value" = "1") // al posto di uno bisogna mettere un contatore che conda da 1 a n
+
+                    finishlist.appendChild(option);
+                }
+            })
+        });
+    }else{
+        console.log("prova");
+    }
+
+})
+*/
