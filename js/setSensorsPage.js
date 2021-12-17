@@ -47,19 +47,32 @@ deleteButtonDisabled = (enabled) => {
 }
 
 //set table parameters
-setTableSensor = (id, pos, tipoA, parco, cont) => {
+setTableSensor = (id, pos, tipoA, parco/*, cont*/) => {
     document.getElementById("senId").innerHTML = 'ID sensore parco: ' + id;
     document.getElementById("senPosizione").innerHTML = 'Posizione: ' + pos;
     document.getElementById("senTipoAnimale").innerHTML = 'Tipo Animale: ' + tipoA;
     document.getElementById("senParco").innerHTML = 'Parco: ' + parco;
-    document.getElementById("senContenimento").innerHTML = 'Contenimento: ' + contToStr(cont);
+    //document.getElementById("senContenimento").innerHTML = 'Contenimento: ' + contToStr(cont);
 }
 
 // API call to delete one sensor
+deleteSensorAlert = () => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            deleteSensor();
+        }
+      })
+}
+
 deleteSensor = () => {
-    if (!confirm("Sei sicuro?")) {
-        return;
-    }
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem('selectedSensor'), {
         method: 'DELETE'
     })
@@ -67,21 +80,36 @@ deleteSensor = () => {
             if (!response.ok) {
                 throw new Error('Network response was not OK');
             }
+            Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Your sensor has been deleted.',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#0095B6'
+            })
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#0095B6',
+                footer: error
+              })
         });
-    $("#loadJQuery").load("../ui/sensori.html");
-    deleteButtonDisabled(true);
+
+        $("#loadJQuery").load("../ui/sensori.html");
+        deleteButtonDisabled(true);
 }
 
 //API call to add one sensor
 addSensor = () => {
     let raw = {
         posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')),
-        tipoAnimale: document.getElementById('animalField').value,
+        tipoAnimale: document.getElementById("animalField").options[document.getElementById("animalField").selectedIndex].text,
         parco: sessionStorage.getItem('selectedPark'),
-        contenimento: document.getElementById('contField').value,
         senId: document.getElementById('idField').value
     };
     fetch(variables.API_URL + 'sensoreGPS', {
@@ -96,19 +124,55 @@ addSensor = () => {
                 throw new Error('Network response was not OK');
             }
             response.json();
+            Swal.fire({
+                icon: 'success',
+                title: 'Added!',
+                text: 'Your sensor has been added.',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#0095B6'
+            })
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
-        });
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: error
+              })
+        }); 
 
     $('#addSensorModal').modal('hide'); //hide form add button
     $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
-    getSensorList(); //reload sensors list
+    //getSensorList(); //reload sensors list
 }
 
 // Used in onclick event of "Aggiungi sensore" button to set precompiled fields
 setAddButtonPopUp = () => {
+    // set animals selector
+    fetch(variables.API_URL + 'fauna/cont/' + true, {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            let count = 1;
+            let select = document.getElementById('animalField');
+            data.forEach(animal => {
+                animal.Parco.forEach(park => {
+                    if (park == sessionStorage.getItem('selectedPark')){
+                        let option = document.createElement('option');
+                        option.setAttribute('value', count);
+                        option.innerHTML = animal.Tipo;
+                        select.appendChild(option);
+                        count++;
+                    }
+                })
+            })
+        });
+    // set park field
     document.getElementById('parkField').setAttribute('value', sessionStorage.getItem("selectedPark"));
+    
+    // set sensor number
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem("selectedPark"), {
         method: 'GET'
     })
