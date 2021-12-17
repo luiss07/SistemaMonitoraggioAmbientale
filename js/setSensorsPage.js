@@ -80,11 +80,13 @@ deleteSensor = () => {
             if (!response.ok) {
                 throw new Error('Network response was not OK');
             }
-            Swal.fire(
-                'Deleted!',
-                'Your sensor has been deleted.',
-                'success',
-                )
+            Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: 'Your sensor has been deleted.',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#0095B6'
+            })
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
@@ -92,6 +94,8 @@ deleteSensor = () => {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Something went wrong!',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#0095B6',
                 footer: error
               })
         });
@@ -120,17 +124,27 @@ addSensor = () => {
                 throw new Error('Network response was not OK');
             }
             response.json();
-            alert('Sensor added successfully!');
+            Swal.fire({
+                icon: 'success',
+                title: 'Added!',
+                text: 'Your sensor has been added.',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#0095B6'
+            })
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
-            alert('There has been a problem with your fetch operation: ' + error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: error
+              })
         }); 
 
-    $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
-    getSensorList(); //reload sensors list
     $('#addSensorModal').modal('hide'); //hide form add button
-
+    $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
+    //getSensorList(); //reload sensors list
 }
 
 // Used in onclick event of "Aggiungi sensore" button to set precompiled fields
