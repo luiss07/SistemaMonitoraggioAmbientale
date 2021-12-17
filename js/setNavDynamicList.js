@@ -51,6 +51,7 @@ getFaunaList().then(data=>{
                         $("#loadJQuery").load("../ui/flora_fauna.html");
                         sessionStorage["selectedAnimalPlant"] = animal.Tipo;
                         sessionStorage["description"] = animal.Descrizione;
+                        sessionStorage["contenimento"] = animal.Contenimento;
                         sessionStorage["selectedPage"] = "fauna";
                         return false;
                     };
@@ -88,6 +89,7 @@ getFloraList().then(data=>{
                         $("#loadJQuery").load("../ui/flora_fauna.html");
                         sessionStorage["selectedAnimalPlant"] = plant.Tipo;
                         sessionStorage["description"] = plant.Descrizione;
+                        sessionStorage["contenimento"] = false;
                         sessionStorage["selectedPage"] = "flora";
                         return false;
                     };

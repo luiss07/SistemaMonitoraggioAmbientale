@@ -5,6 +5,12 @@ setFloraFaunaPage = () => {
     if (sessionStorage.getItem("selectedPage") == "fauna") {
         genMap();
     }
+    if (sessionStorage.getItem("contenimento") == "true") {
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        createYearsForm();
+        getYears();
+    }
 }
 
 // API CALL to set dynamically the images
@@ -97,7 +103,7 @@ setMapBox = (num) => {
 
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
-    
+
     return map;
 }
 
@@ -110,51 +116,102 @@ function isEmptyObject(obj) {
 
 //---------------------------------------------------------------------------------------------
 
-// API call to GET years list
-/*
-async function getYearsList(){
-    let response = await fetch(variables.API_URL+'storicoFauna');
-    let data = await response.json();
-    return data;
+setYearsList = (typeList, years) => {
+    typeList = document.getElementById(typeList);
+
+    let count = 1;
+
+    years.forEach(year => {
+        let option = document.createElement("option");
+        option.innerHTML = year;
+        option.setAttribute("value", count);
+
+        count += 1;
+
+        typeList.appendChild(option);
+    })
+
 }
 
-getYearsList().then(data=>{
+// API call to GET years list
 
-    // prima lista
-    let startlist = document.getElementById('startList');
-    if (sessionStorage.getItem("selectedPark") != null){
-        data.forEach(animal => {
-            animal.Parco.forEach(park =>{
-                if(park == sessionStorage.getItem("selectedPark")){
-                    let option = document.createElement("option");
-                    option.innerHTML = animal.Anno;
-                    option.setAttribute("value" = "1") // al posto di uno bisogna mettere un contatore che conda da 1 a n
+getYears = () => {
+    fetch(variables.API_URL + 'storicoFauna', {
+        method: 'GET'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (sessionStorage.getItem("selectedPark") != null) {
 
-                    startlist.appendChild(option);
+                let totalyears = new Array();
+                let singleYears = new Array();
+                let counter = 0;
+
+                data.forEach(animal => {
+                    if (animal.Parco == sessionStorage.getItem("selectedPark")) {
+                        totalyears[counter] = animal.Anno;
+
+                        counter += 1;
+                    }
+
+                });
+
+                if (counter > 0) {
+                    singleYears = [...new Set(totalyears)]
                 }
-            })
-        });
-    }else{
-        console.log("prova");
-    }
+
+                setYearsList('startList', singleYears);
+                setYearsList('finishList', singleYears);
+
+            } else {
+                console.log("seleziona parco");
+            }
+        })
+}
+
+function createYearsForm() {
+    let yearsForm = document.getElementById('yearsDiv');
     
-    // seconda lista
-    let finishlist = document.getElementById('finishList');
-    if (sessionStorage.getItem("selectedPark") != null){
-        data.forEach(animal => {
-            animal.Parco.forEach(park =>{
-                if(park == sessionStorage.getItem("selectedPark")){
-                    let option = document.createElement("option");
-                    option.innerHTML = animal.Anno;
-                    option.setAttribute("value" = "1") // al posto di uno bisogna mettere un contatore che conda da 1 a n
+    let h3 = document.createElement("h3");
+    h3.innerHTML = "Seleziona l'anno iniziale e finale";
+    h3.setAttribute("class", "myFFFormText");
 
-                    finishlist.appendChild(option);
-                }
-            })
-        });
-    }else{
-        console.log("prova");
-    }
+    let form = document.createElement("form");
+    form.setAttribute("class", "myFFForm");
 
-})
-*/
+    let div1 = document.createElement("div");
+    div1.setAttribute("class", "form-floating mb-3");
+
+    let select1 = document.createElement("select");
+    select1.setAttribute("class", "form-select");
+    select1.setAttribute("id", "startList");
+    select1.setAttribute("aria-label", "Floating label select example");
+    
+    let label1 = document.createElement("label");
+    label1.setAttribute("for", "floatingSelect");
+    label1.innerHTML = "Inizio";
+
+    let div2 = document.createElement("div");
+    div2.setAttribute("class", "form-floating mb-3");
+
+    let select2 = document.createElement("select");
+    select2.setAttribute("class", "form-select");
+    select2.setAttribute("id", "finishList");
+    select2.setAttribute("aria-label", "Floating label select example");
+
+    let label2 = document.createElement("label");
+    label2.setAttribute("for", "floatingSelect");
+    label2.innerHTML = "Fine";
+
+    div1.appendChild(select1);
+    div1.appendChild(label1);
+    form.appendChild(div1);
+
+    div2.appendChild(select2);
+    div2.appendChild(label2);
+    form.appendChild(div2);
+
+    yearsForm.appendChild(h3);
+    yearsForm.appendChild(form);
+
+}

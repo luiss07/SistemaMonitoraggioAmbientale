@@ -1,11 +1,8 @@
-
-google.charts.load("current", { packages: ["corechart"] });
-google.charts.setOnLoadCallback(drawChart);
-
 var barsVisualization;
 var data;
 
 function drawChart() {
+    console.log("drawchart");
     data = new google.visualization.DataTable();
     data.addColumn('string', 'Anno');
     data.addColumn('number', 'Quantità');
