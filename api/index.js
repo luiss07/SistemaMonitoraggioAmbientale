@@ -134,9 +134,10 @@ app.get('/api/fauna/:animale', (request, response) => {
     })
 })
 
-app.get('/api/fauna/:contenimento', (request, response) => {
+app.get('/api/fauna/cont/:contenimento', (request, response) => {
+    let isTrueSet = (request.params.contenimento === 'true');
     database.collection("Fauna").find({
-        Contenimento: request.params.contenimento
+        Contenimento: isTrueSet
     }).toArray((error, result) => {
         if (error) {
             console.log(error);

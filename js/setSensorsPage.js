@@ -56,10 +56,23 @@ setTableSensor = (id, pos, tipoA, parco/*, cont*/) => {
 }
 
 // API call to delete one sensor
+deleteSensorAlert = () => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            deleteSensor();
+        }
+      })
+}
+
 deleteSensor = () => {
-    if (!confirm("Sei sicuro?")) {
-        return;
-    }
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem('selectedSensor'), {
         method: 'DELETE'
     })
@@ -67,19 +80,31 @@ deleteSensor = () => {
             if (!response.ok) {
                 throw new Error('Network response was not OK');
             }
+            Swal.fire(
+                'Deleted!',
+                'Your sensor has been deleted.',
+                'success',
+                )
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                footer: error
+              })
         });
-    $("#loadJQuery").load("../ui/sensori.html");
-    deleteButtonDisabled(true);
+
+        $("#loadJQuery").load("../ui/sensori.html");
+        deleteButtonDisabled(true);
 }
 
 //API call to add one sensor
 addSensor = () => {
     let raw = {
         posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')),
-        tipoAnimale: document.getElementById("animalField").options[document.getElementById("contField").selectedIndex].text,
+        tipoAnimale: document.getElementById("animalField").options[document.getElementById("animalField").selectedIndex].text,
         parco: sessionStorage.getItem('selectedPark'),
         senId: document.getElementById('idField').value
     };
@@ -102,34 +127,38 @@ addSensor = () => {
             alert('There has been a problem with your fetch operation: ' + error);
         }); 
 
-    $('#addSensorModal').modal('hide'); //hide form add button
     $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
     getSensorList(); //reload sensors list
+    $('#addSensorModal').modal('hide'); //hide form add button
+
 }
 
 // Used in onclick event of "Aggiungi sensore" button to set precompiled fields
 setAddButtonPopUp = () => {
-    fetch(variables.API_URL + 'fauna/' + true, {
+    // set animals selector
+    fetch(variables.API_URL + 'fauna/cont/' + true, {
         method: 'GET'
     })
         .then(response => response.json())
         .then(data => {
             let count = 1;
             let select = document.getElementById('animalField');
-            console.log(data);
             data.forEach(animal => {
                 animal.Parco.forEach(park => {
-                    if (park == sessionStorage.getItem('sessionStorage')){
+                    if (park == sessionStorage.getItem('selectedPark')){
                         let option = document.createElement('option');
                         option.setAttribute('value', count);
                         option.innerHTML = animal.Tipo;
-                        count++;
                         select.appendChild(option);
+                        count++;
                     }
                 })
             })
         });
+    // set park field
     document.getElementById('parkField').setAttribute('value', sessionStorage.getItem("selectedPark"));
+    
+    // set sensor number
     fetch(variables.API_URL + 'sensoreGPS/' + sessionStorage.getItem("selectedPark"), {
         method: 'GET'
     })
