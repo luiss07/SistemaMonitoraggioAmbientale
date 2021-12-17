@@ -11,18 +11,13 @@ function drawChart() {
     data.addColumn('number', 'Quantità');
     data.addRows([
         // da popolare dinamicamente
-        ['2005', 3.6],
-        ['2006', 4.1],
-        ['2007', 3.8],
-        ['2008', 3.9],
-        ['2009', 4.6]
+        ['2016', 14],
+        ['2017', 12],
+        ['2018', 11],
+        ['2019', 15],
+        ['2020', 17]
     ]);
-    data.addRows([['2004', 5]]);
-
-    var options = {
-        title: 'Lengths of dinosaurs, in meters',
-        legend: { position: 'none' },
-    };
+    data.addRows([['2021', 16]]);
 
     barsVisualization = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     barsVisualization.draw(data, null);
