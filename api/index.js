@@ -201,6 +201,19 @@ app.get('/api/fauna/:animale', (request, response) => {
     })
 })
 
+app.get('/api/fauna/cont/:contenimento', (request, response) => {
+    let isTrueSet = (request.params.contenimento === 'true');
+    database.collection("Fauna").find({
+        Contenimento: isTrueSet
+    }).toArray((error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        response.send(result);
+    })
+})
+
 /**
  * @swagger
  * /api/flora:
