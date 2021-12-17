@@ -101,6 +101,7 @@ deleteSensor = () => {
         });
 
         $("#loadJQuery").load("../ui/sensori.html");
+        getSensorList();
         deleteButtonDisabled(true);
 }
 
@@ -144,7 +145,7 @@ addSensor = () => {
 
     $('#addSensorModal').modal('hide'); //hide form add button
     $("#loadJQuery").load("../ui/sensori.html"); //return to sensors page
-    //getSensorList(); //reload sensors list
+    getSensorList(); //reload sensors list
 }
 
 // Used in onclick event of "Aggiungi sensore" button to set precompiled fields
