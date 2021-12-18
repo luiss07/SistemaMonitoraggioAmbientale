@@ -4,15 +4,13 @@ setFloraFaunaPage = () => {
     document.getElementById("ffDescription").innerHTML = sessionStorage.getItem("description");
 
     // create map only for fauna
-    if (sessionStorage.getItem("selectedPage") == "fauna") {
+    if (sessionStorage.getItem("selectedPage") == "fauna" && sessionStorage.getItem("contenimento") == "true") {
         genMap();
     }
     // create years list and histogram
-    if (sessionStorage.getItem("contenimento") == "true" && sessionStorage.getItem("selectedPage") == "fauna") {
+    if (sessionStorage.getItem("selectedPage") == "fauna") {
         createYearsForm();
         getYears();
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
     }
 }
 
@@ -200,11 +198,21 @@ createYearsForm = () => {
     label.setAttribute("for", "floatingSelect");
     label.innerHTML = "Fine";
 
+    let button = document.createElement("button");
+    button.setAttribute("class", "btn btn-primary mt-3");
+    button.setAttribute("type", "submit");
+    button.onclick = () => {
+        google.charts.load("current", { packages: ["corechart"] });
+        drawChart();
+    }
+    button.innerHTML = "Conferma"; 
+
     div.appendChild(select);
     div.appendChild(label);
     form.appendChild(div);
 
     yearsForm.appendChild(h3);
     yearsForm.appendChild(form);
+    yearsForm.appendChild(button);
 
 }

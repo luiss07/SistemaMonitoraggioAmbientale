@@ -58,13 +58,13 @@ setTableSensor = (id, pos, tipoA, parco/*, cont*/) => {
 // API call to delete one sensor
 deleteSensorAlert = () => {
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Sei sicuro?',
+        text: "Non sarai in grado di tornare indietro!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Si, eliminalo!'
       }).then((result) => {
         if (result.isConfirmed) {
             deleteSensor();
@@ -82,8 +82,8 @@ deleteSensor = () => {
             }
             Swal.fire({
                 icon: 'success',
-                title: 'Deleted!',
-                text: 'Your sensor has been deleted.',
+                title: 'Eliminato!',
+                text: 'Il sensore è stato eliminato.',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#0095B6'
             })
@@ -93,7 +93,7 @@ deleteSensor = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Something went wrong!',
+                text: 'Qualcosa è andato storto!',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#0095B6',
                 footer: error
@@ -127,8 +127,8 @@ addSensor = () => {
             response.json();
             Swal.fire({
                 icon: 'success',
-                title: 'Added!',
-                text: 'Your sensor has been added.',
+                title: 'Aggiunto!',
+                text: 'Il sensore è stato aggiunto.',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#0095B6'
             })
@@ -138,7 +138,7 @@ addSensor = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Something went wrong!',
+                text: 'Qualcosa è andato storto!',
                 footer: error
               })
         }); 

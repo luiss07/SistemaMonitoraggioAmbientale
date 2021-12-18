@@ -11,6 +11,11 @@ window.sessionStorage.setItem("description", "");
 window.sessionStorage.setItem("selectedPage", "monitoraggio"); //default page
 window.sessionStorage.setItem("selectedSensor", "");
 
+// ---- variables for histogram generator ----
+let barsVisualization;
+let data;
+let mesi = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+
 // -------------- GLOBAL FUNCTION --------------
 //          used multiple times in files
 
