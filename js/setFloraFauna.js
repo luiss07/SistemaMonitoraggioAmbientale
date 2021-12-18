@@ -9,6 +9,8 @@ setFloraFaunaPage = () => {
     }
     // create years list and histogram
     if (sessionStorage.getItem("selectedPage") == "fauna") {
+        document.getElementById('histogramDiv').setAttribute('class', 'col myHistogramDiv');
+        document.getElementById('chart_div').setAttribute('class', 'myHistogram');
         createYearsForm();
         getYears();
     }
@@ -160,6 +162,7 @@ getYears = () => {
 
 createYearsForm = () => {
     let yearsForm = document.getElementById('yearsDiv');
+    document.getElementById('yearsDiv').setAttribute('class', 'col myFFFormDiv');
 
     let h3 = document.createElement("h3");
     h3.innerHTML = "Seleziona l'anno iniziale e finale";
