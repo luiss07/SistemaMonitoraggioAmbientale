@@ -841,10 +841,23 @@ app.delete('/api/sensoreGPS/:id', (request,response) => {
 
 /**
  * @swagger
- * /api/storicoFauna:
+ * /api/storicoFauna/{animale}/{parco}:
  *   get:
- *     summary: Retrieve the historical of the park.
- *     description: Retrieve the historical of the park from the Server.
+ *     summary: Retreive all of the historical of a park related to a specific species.
+ *     description: Retreive all of the historical of a park related to a specific species from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: animale
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the animal
+ *       - in: path
+ *         name: parco
+ *         schema: 
+ *             type: string
+ *         required: true
+ *         description: name of the park
  *     responses:
  *       200:
  *         description: The historical of the park.
@@ -886,11 +899,13 @@ app.delete('/api/sensoreGPS/:id', (request,response) => {
  *                         type: integer
  *                         description: The month of the date.
  *                         example: 11
- *                       
  */
 
-app.get('/api/storicoFauna', (request, response) => {
-    database.collection("StoricoFauna").find({}).toArray((error, result) => {
+ app.get('/api/storicoFauna/:animale/:parco', (request, response) => {
+    database.collection("StoricoFauna").find({
+        TipoAnimale: request.params.animale,
+        Parco: request.params.parco
+    }).toArray((error, result) => {
         if (error) {
             console.log(error);
         }
