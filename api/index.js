@@ -56,7 +56,6 @@ var database;
 //listen 
 app.listen(49146, () => {
     console.log("APIs Running");
-    
     MongoClient.connect(CONNECTION_STRING, { useNewUrlParser: true }, (error, client) => {
         if (error) {
             console.log("Error connecting at the MongoDB:" + error); 
@@ -124,13 +123,13 @@ app.listen(49146, () => {
 
 
 app.get('/api/fauna', (request, response) => {
-    database.collection("Fauna").find({}).toArray((error, result) => {
-        if (error) {
-            console.log(error);
-        }
-
-        response.send(result);
-    })
+        database.collection("Fauna").find({}).toArray((error, result) => {
+            if (error) {
+                console.log(error);
+            }
+            result = JSON.parse(JSON.stringify(result));
+            response.status(200).send(result);
+        })
 })
 
 /**
@@ -793,7 +792,7 @@ app.get('/api/sensoreGPS/:animale/:parco', (request, response) => {
 app.post('/api/sensoreGPS', (request, response) => {
 
     database.collection("SensoreGPS").count({}, function (error) {
-        if (error){
+        if (error) {
             console.log(error);
         }
 
@@ -830,7 +829,7 @@ app.post('/api/sensoreGPS', (request, response) => {
  *         description: the product was not found
 */
 
-app.delete('/api/sensoreGPS/:id', (request,response) => {
+app.delete('/api/sensoreGPS/:id', (request, response) => {
     let senId = new ObjectId(request.params.id);
     database.collection("SensoreGPS").deleteOne({
         _id: senId
@@ -901,7 +900,7 @@ app.delete('/api/sensoreGPS/:id', (request,response) => {
  *                         example: 11
  */
 
- app.get('/api/storicoFauna/:animale/:parco', (request, response) => {
+app.get('/api/storicoFauna/:animale/:parco', (request, response) => {
     database.collection("StoricoFauna").find({
         TipoAnimale: request.params.animale,
         Parco: request.params.parco
@@ -913,3 +912,5 @@ app.delete('/api/sensoreGPS/:id', (request,response) => {
         response.send(result);
     })
 })
+
+module.exports = app; 

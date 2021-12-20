@@ -111,7 +111,7 @@ addSensor = () => {
         posizione: randomPositionGenerator(sessionStorage.getItem('parkPos')),
         tipoAnimale: document.getElementById("animalField").options[document.getElementById("animalField").selectedIndex].text,
         parco: sessionStorage.getItem('selectedPark'),
-        senId: document.getElementById('idField').value
+        senId: parseInt(document.getElementById('idField').value)
     };
     fetch(variables.API_URL + 'sensoreGPS', {
         method: 'POST',

@@ -1,4 +1,6 @@
 {
     "liveServer.settings.port": 5502,
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "javascript.suggest.autoImports": false,
+    "typescript.suggest.autoImports": false
 }
