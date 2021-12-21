@@ -141,7 +141,7 @@ test('TEST2: correct sensor added', function (assert) {
             "posizione": "45° 32' 47 N 7° 10' 59 E",
             "tipoAnimale": "TestingAnimal",
             "parco": "Gran Paradiso",
-            "senId": "100"
+            "senId": 100
         })
         .end((err, res) => {
 

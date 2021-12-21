@@ -43,7 +43,7 @@ interval = setInterval(() => {
                 }
             })
         });
-}, 1000 * 60 * 10);// every 10 minutes
+}, 1000 * 60 * 10);// updating in milliseconds every 10 minutes (set to 1000 * 5 to update every 5 seconds)
 
 setRisk = (all, sic, inc, riId, met, park) => {
     let raw = {
