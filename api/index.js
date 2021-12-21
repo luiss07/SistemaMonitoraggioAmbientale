@@ -200,6 +200,61 @@ app.get('/api/fauna/:animale', (request, response) => {
     })
 })
 
+/**
+ * @swagger
+ * /api/fauna/cont/{contenimento}:
+ *   get:
+ *     summary: Retrieve a list of animal that have the GPS Sensor.
+ *     description: Retrieve a list of animal that have the GPS Sensor from the Server.
+ *     parameters:
+ *       - in: path
+ *         name: contenimento
+ *         schema: 
+ *             type: boolean
+ *         required: true
+ *         description: does the animal have the GPS Sensor?
+ *     responses:
+ *       200:
+ *         description: A list of animal that have GPS Sensor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: ObjectId
+ *                         description: Id of the animal.
+ *                         example: 61a2ae7bb48bb237244bf8a9
+ *                       Type:
+ *                         type: string
+ *                         description: Type of the animal
+ *                         example: Bear
+ *                       Description:
+ *                         type: string
+ *                         description: The animal description.
+ *                         example: This is a bear.
+ *                       Image: 
+ *                          type: array
+ *                          items:
+ *                              type: string
+ *                          description: The animal image.
+ *                          example: bear.jpg
+ *                       Contenimento:
+ *                          type: bool
+ *                          description: If the species has the GPS sensor attached to it
+ *                          example: true
+ *                       Parco:
+ *                          type: array
+ *                          items:
+ *                              type: string
+ *                          description: The list of parks that cointain such animal.
+ *                          example: [ Gran Paradiso, La Mandria ]
+ */
 app.get('/api/fauna/cont/:contenimento', (request, response) => {
     let isTrueSet = (request.params.contenimento === 'true');
     database.collection("Fauna").find({
