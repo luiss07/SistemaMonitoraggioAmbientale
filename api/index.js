@@ -204,8 +204,8 @@ app.get('/api/fauna/:animale', (request, response) => {
  * @swagger
  * /api/fauna/cont/{contenimento}:
  *   get:
- *     summary: Retrieve a list of animal that have the GPS Sensor.
- *     description: Retrieve a list of animal that have the GPS Sensor from the Server.
+ *     summary: Retrieve a list of animals that have the GPS Sensor.
+ *     description: Retrieve a list of animals that have the GPS Sensor from the Server.
  *     parameters:
  *       - in: path
  *         name: contenimento
@@ -897,8 +897,8 @@ app.delete('/api/sensoreGPS/:id', (request, response) => {
  * @swagger
  * /api/storicoFauna/{animale}/{parco}:
  *   get:
- *     summary: Retreive all of the historical of a park related to a specific species.
- *     description: Retreive all of the historical of a park related to a specific species from the Server.
+ *     summary: Retreive the entirety of the historical of a park related to a specific species.
+ *     description: Retreive the entirety of the historical of a park related to a specific species from the Server.
  *     parameters:
  *       - in: path
  *         name: animale
