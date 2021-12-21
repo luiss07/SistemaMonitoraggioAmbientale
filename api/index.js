@@ -876,12 +876,12 @@ app.post('/api/sensoreGPS', (request, response) => {
  *         schema:
  *             type: string
  *         required: true
- *         description: Insert the Id of the object
+ *         description: Insert the Id of the sensor
  *     responses:
  *       200:
- *         description: the product was deleted
+ *         description: the sensor was deleted
  *       404:
- *         description: the product was not found
+ *         description: the sensor was not found
 */
 
 app.delete('/api/sensoreGPS/:id', (request, response) => {
