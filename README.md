@@ -3,6 +3,8 @@ Questa repository contiene il progetto per il corso di Ingegneria del software @
 
 Questo progetto consiste in un API RestFul scritta in linguaggio Javascript, html, css con l'utilizzo di JQuery e Bootstrap.
 
+La cartella ``` project_documents ``` contiene i documenti relativi al progetto.
+
 # Guida all'avvio
 Per testare in locale l'applicazione per prima cosa clonare la repository.
 
